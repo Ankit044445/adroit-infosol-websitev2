@@ -1,0 +1,139 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.footer {
+  background: $indigo-900;
+  color: rgba(255, 255, 255, 0.92);
+  margin-top: $space-section;
+  padding-top: clamp(3rem, 6vw, 4.5rem);
+}
+
+.top {
+  display: grid;
+  gap: $space-8;
+  grid-template-columns: 1fr;
+  padding-bottom: $space-8;
+
+  @include respond(md) {
+    grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+  }
+}
+
+.brandCol {
+  :global(.fw-brand) span {
+    color: #fff !important;
+  }
+}
+
+.tagline {
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: $space-4;
+  max-width: 30ch;
+  font-size: $fs-body-sm;
+}
+
+.socials {
+  display: flex;
+  gap: $space-3;
+  margin-top: $space-5;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: $radius-pill;
+  border: 1px solid $green-600;
+  background: $green-600;
+  color: #fff;
+  transition: background-color $dur-fast $ease-out, border-color $dur-fast $ease-out,
+    transform $dur-fast $ease-out;
+
+  &:hover {
+    background: $green-700;
+    border-color: $green-700;
+    transform: translateY(-3px);
+    color: #fff;
+  }
+}
+
+.linkCol {
+  h3 {
+    color: #fff;
+    font-size: $fs-body;
+    font-weight: 700;
+    margin-bottom: $space-4;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+  }
+
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: $fs-body-sm;
+    font-weight: 500;
+    transition: color $dur-fast $ease-out;
+
+    &:hover {
+      color: $green-400;
+    }
+  }
+
+  a.viewAll {
+    color: $green-400;
+    font-weight: 700;
+  }
+}
+
+.contactList {
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: $fs-body-sm;
+    font-weight: 500;
+
+    svg {
+      margin-top: 2px;
+      flex-shrink: 0;
+      color: $green-400;
+    }
+  }
+
+  a {
+    color: rgba(255, 255, 255, 0.8);
+
+    &:hover {
+      color: $green-400;
+    }
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding-block: $space-5;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: $fs-caption;
+  color: rgba(255, 255, 255, 0.68);
+
+  @include respond(md) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  p {
+    margin: 0;
+    color: inherit;
+  }
+}

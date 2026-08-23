@@ -1,0 +1,102 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: $font-heading;
+  font-weight: 600;
+  font-size: $fs-body-sm;
+  line-height: 1;
+  padding: 0.9rem 1.5rem;
+  border-radius: $radius-md;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform $dur-fast $ease-out, box-shadow $dur-fast $ease-out,
+    background-color $dur-fast $ease-out, border-color $dur-fast $ease-out,
+    color $dur-fast $ease-out;
+  @include focus-ring;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform $dur-fast $ease-out;
+  }
+
+  &:hover svg {
+    transform: translateX(3px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.btn-primary {
+  background: var(--brand-solid);
+  color: var(--text-on-brand);
+  box-shadow: var(--shadow-brand);
+
+  &:hover {
+    background: var(--brand-solid-hover);
+    transform: translateY(-2px);
+    color: var(--text-on-brand);
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--heading);
+  border-color: var(--border-strong);
+
+  &:hover {
+    border-color: var(--brand);
+    color: var(--brand-strong);
+    transform: translateY(-2px);
+  }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  padding-inline: 0.25rem;
+
+  &:hover {
+    color: var(--brand-strong);
+  }
+}
+
+// Solid white on a dark/gradient panel reads more confident than a
+// translucent glass pill - the panel already carries the color, so the
+// CTA's job is to be the highest-contrast thing on it.
+.btn-on-dark {
+  background: #fff;
+  color: $indigo-800;
+  border-color: #fff;
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.35);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+  }
+}
+
+.btn-lg {
+  padding: 1.05rem 1.9rem;
+  font-size: $fs-body;
+}
+
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: $radius-pill;
+}
+
+.btn-block {
+  width: 100%;
+}

@@ -1,0 +1,115 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.wrap {
+  height: 100%;
+}
+
+.card {
+  @include card-surface;
+  @include card-hover;
+  height: 100%;
+  padding: $space-5;
+  text-align: center;
+}
+
+.leader {
+  text-align: left;
+  padding: $space-6;
+}
+
+// Real headshot slot, sized like a standard corporate team-page photo.
+// Circular with a ring + shadow so a white-background studio headshot reads
+// as an intentional portrait frame on a dark card, not a pasted rectangle.
+.photo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: visible;
+  margin-inline: auto;
+  margin-bottom: $space-4;
+  box-shadow: $shadow-sm;
+  transition: box-shadow $dur-base $ease-out;
+
+  .leader & {
+    width: 132px;
+    height: 132px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--surface);
+    outline: 1px solid var(--border-strong);
+    outline-offset: -1px;
+    background: var(--bg-alt);
+  }
+}
+
+.card:hover .photo {
+  box-shadow: $shadow-md;
+}
+
+.card:hover .photo img {
+  outline-color: var(--brand);
+}
+
+.roleBadge {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 26px;
+  height: 26px;
+  border-radius: $radius-pill;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-solid);
+  color: #fff;
+  border: 2px solid var(--surface);
+}
+
+.leader .photo {
+  margin-inline: 0;
+}
+
+.photoPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border-strong);
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  @include icon-pop;
+}
+
+.card:hover .photoPlaceholder {
+  transform: scale(1.03);
+  border-color: var(--brand);
+  color: var(--brand-strong);
+}
+
+.name {
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+
+.role {
+  font-family: $font-heading;
+  font-weight: 600;
+  font-size: $fs-caption;
+  color: var(--brand-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+.bio {
+  margin-top: $space-4;
+  margin-bottom: 0;
+  font-size: $fs-body-sm;
+}

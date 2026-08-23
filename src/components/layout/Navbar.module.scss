@@ -1,0 +1,401 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.sentinel {
+  height: 1px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: transparent;
+  transition: background-color $dur-base $ease-out, box-shadow $dur-base $ease-out,
+    border-color $dur-base $ease-out;
+  border-bottom: 1px solid transparent;
+
+  &.scrolled {
+    background: var(--header-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom-color: var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  padding-block: 0.9rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  :global(.fw-brand) {
+    font-family: $font-heading;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+}
+
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: $space-6;
+
+  @include respond(lg) {
+    display: flex;
+  }
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: $font-heading;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  position: relative;
+  padding-block: 0.4rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 100%;
+    background: var(--brand);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $dur-base $ease-out;
+  }
+
+  &:hover {
+    color: var(--brand-strong);
+  }
+
+  &:hover::after,
+  &.active::after {
+    transform: scaleX(1);
+  }
+
+  &.active {
+    color: var(--brand-strong);
+  }
+}
+
+.navCaret {
+  transition: transform $dur-fast $ease-out;
+  opacity: 0.7;
+
+  .megaOpen & {
+    transform: rotate(180deg);
+  }
+}
+
+.navItem {
+  position: relative;
+
+  // Invisible bridge over the visual gap between the trigger and the
+  // floating panel below it.
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(560px, 80vw);
+    height: $space-4;
+  }
+}
+
+.megaPanel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 8px);
+  transform-origin: top center;
+  width: min(560px, 80vw);
+  margin-top: $space-4;
+  padding: $space-5;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $dur-base $ease-out, transform $dur-base $ease-out;
+  z-index: 1100;
+
+  &.megaPanelOpen {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+}
+
+@include reduce-motion {
+  .megaPanel {
+    transition: none;
+  }
+}
+
+.megaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem;
+}
+
+.megaItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.6rem 0.65rem;
+  border-radius: $radius-md;
+  transition: background-color $dur-fast $ease-out;
+
+  &:hover {
+    background: var(--bg-alt);
+  }
+
+  &:hover .megaIcon {
+    transform: scale(1.08) rotate(-4deg);
+    background: var(--brand-solid);
+    color: var(--text-on-brand);
+  }
+
+  strong {
+    display: block;
+    font-family: $font-heading;
+    font-size: $fs-body-sm;
+    font-weight: 700;
+    color: var(--heading);
+  }
+
+  em {
+    display: block;
+    font-style: normal;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.3;
+    margin-top: 0.15rem;
+  }
+}
+
+.megaIcon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: $radius-sm;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+  transition: transform 0.28s $ease-out, background-color $dur-base $ease-out,
+    color $dur-base $ease-out;
+}
+
+@include reduce-motion {
+  .megaIcon {
+    transition: background-color $dur-base $ease-out, color $dur-base $ease-out;
+  }
+}
+
+.megaAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: $space-4;
+  padding-top: $space-4;
+  border-top: 1px solid var(--border);
+  width: 100%;
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: $fs-body-sm;
+  color: var(--brand-strong);
+  transition: color $dur-fast $ease-out;
+
+  svg {
+    transition: transform $dur-fast $ease-out;
+  }
+
+  &:hover {
+    color: var(--brand);
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-pill;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color $dur-fast $ease-out, color $dur-fast $ease-out, transform $dur-fast $ease-out;
+
+  &:hover {
+    color: var(--brand-strong);
+    border-color: var(--brand);
+    transform: rotate(-12deg);
+  }
+}
+
+.ctaDesktop {
+  display: none;
+  @include respond(lg) {
+    display: block;
+  }
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-sm;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+
+  @include respond(lg) {
+    display: none;
+  }
+}
+
+.mobileNav {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border-bottom: 1px solid transparent;
+  transition: max-height $dur-slow $ease-out, border-color $dur-base;
+
+  @include respond(lg) {
+    display: none;
+  }
+}
+
+.mobileNavOpen {
+  // Generous enough to fit the nav list AND the services submenu expanded
+  // at once, plus the CTA - a mobile viewport will scroll internally if the
+  // real content is ever taller than this, so err high, not tight.
+  max-height: 64rem;
+  border-bottom-color: var(--border);
+  overflow-y: auto;
+}
+
+.mobileNavInner {
+  min-height: 0;
+}
+
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  padding: $space-4 clamp(1.25rem, 4vw, 2.5rem) 0;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-block: $space-3;
+  border-bottom: 1px solid var(--border);
+  border-top: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: $font-heading;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+
+  svg {
+    opacity: 0.5;
+    transition: transform $dur-fast $ease-out;
+  }
+
+  &.active {
+    color: var(--brand-strong);
+  }
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.mobileSub {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height $dur-slow $ease-out;
+}
+
+.mobileSubOpen {
+  max-height: 28rem;
+}
+
+.mobileSubInner {
+  min-height: 0;
+}
+
+.mobileSubLink {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem clamp(0.5rem, 2vw, 1rem);
+  font-size: $fs-body-sm;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+
+  svg {
+    color: var(--brand-strong);
+    flex-shrink: 0;
+  }
+}
+
+.mobileSubAll {
+  display: block;
+  padding: 0.75rem clamp(0.5rem, 2vw, 1rem);
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: $fs-body-sm;
+  color: var(--brand-strong);
+}
+
+.mobileCta {
+  // Overrides .btn-block's width: 100% - that resolves against this
+  // element's own containing block, so pairing it with horizontal margin
+  // (instead of the parent's padding, like .mobileNavList uses) pushed the
+  // button 20px past the viewport edge on the right. Size it to the
+  // margin explicitly instead of fighting the cascade.
+  width: calc(100% - #{clamp(1.25rem, 4vw, 2.5rem)} * 2) !important;
+  margin: $space-5 clamp(1.25rem, 4vw, 2.5rem) $space-6;
+}

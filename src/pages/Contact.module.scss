@@ -1,0 +1,243 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+  background: var(--bg-alt);
+}
+
+.blobA {
+  width: 420px;
+  height: 420px;
+  top: -180px;
+  right: -140px;
+}
+
+.blobB {
+  width: 320px;
+  height: 320px;
+  bottom: -160px;
+  left: -120px;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  grid-template-columns: 1fr;
+  align-items: start;
+
+  @include respond(lg) {
+    // Slightly wider right column: the video needs more room to read as a
+    // real visual (not a token thumbnail), and it balances the two
+    // columns' heights instead of leaving empty space under a smaller video.
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+}
+
+.copy {
+  max-width: 560px;
+}
+
+// Connected vertical timeline (compact version of the ProcessSteps
+// pattern used on Services/ServiceDetail) - a real ordered sequence reads
+// better as a line-connected flow than a flat 2x2 grid of circles.
+.steps {
+  position: relative;
+  list-style: none;
+  margin: $space-6 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--border);
+  }
+
+  li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: $fs-body-sm;
+    color: var(--text);
+  }
+}
+
+.stepNum {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: $radius-pill;
+  background: var(--brand-solid);
+  color: #fff;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+// Sidebar next to the form - reassurance to read while filling it in,
+// rather than living up in the hero where it competed with the video.
+.gains {
+  max-width: 420px;
+
+  @include respond(lg) {
+    position: sticky;
+    top: $space-8;
+  }
+}
+
+.gainsHeading {
+  font-size: $fs-h3;
+  margin-top: $space-3;
+  margin-bottom: $space-5;
+}
+
+.gainsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: $fs-body-sm;
+    color: var(--text-muted);
+
+    svg {
+      color: var(--brand-strong);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    strong {
+      color: var(--text);
+    }
+  }
+}
+
+// ---- "Get in Touch" reach cards: three standalone cards (not one row of
+// dividers) so each gets real breathing room and matches the card language
+// used everywhere else on the site (StatsStrip, FeatureCard) instead of
+// being the one place on the page using a cramped divider-row pattern.
+.reachCard {
+  @include card-surface;
+  @include card-hover;
+  height: 100%;
+  padding: $space-6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  h3 {
+    font-size: $fs-h4;
+    margin-bottom: 0.4rem;
+  }
+}
+
+.reachDesc {
+  font-size: $fs-body-sm;
+  color: var(--text-muted);
+  margin-bottom: $space-4;
+}
+
+.reachIcon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: $radius-md;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+  margin-bottom: $space-4;
+  @include icon-pop;
+}
+
+.reachCard:hover .reachIcon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.reachValue {
+  display: block;
+  font-family: $font-heading;
+  font-weight: 600;
+  font-size: $fs-body;
+  color: var(--heading);
+  line-height: 1.4;
+  word-break: break-word;
+  margin-top: auto;
+}
+
+a.reachValue:hover {
+  color: var(--brand-strong);
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: auto;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: $radius-pill;
+    background: var(--brand-soft);
+    color: var(--brand-strong);
+    transition: background-color $dur-fast $ease-out, color $dur-fast $ease-out,
+      transform $dur-fast $ease-out;
+
+    &:hover {
+      background: var(--brand-solid);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.videoCol {
+  position: relative;
+  z-index: 1;
+}
+
+.calendlyLink {
+  margin-top: $space-4;
+  width: 100%;
+}
+
+.formRow {
+  align-items: start;
+}
+
+.formStandalone {
+  max-width: 640px;
+
+  @include respond(lg) {
+    max-width: none;
+  }
+}

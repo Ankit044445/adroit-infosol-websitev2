@@ -1,0 +1,72 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.list {
+  max-width: 760px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.item {
+  @include card-surface;
+  padding: $space-5 $space-6;
+
+  &[open] {
+    border-color: var(--brand);
+  }
+
+  &[open] .caret {
+    transform: rotate(180deg);
+  }
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  cursor: pointer;
+  list-style: none;
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: $fs-body;
+  color: var(--heading);
+  transition: color $dur-fast $ease-out;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover {
+    color: var(--brand-strong);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: $radius-sm;
+  }
+}
+
+.caret {
+  flex-shrink: 0;
+  color: var(--brand-strong);
+  transition: transform $dur-base $ease-out;
+}
+
+.answer {
+  margin: $space-4 0 0;
+  padding-top: $space-4;
+  border-top: 1px solid var(--border);
+  font-size: $fs-body-sm;
+  line-height: $lh-body;
+  animation: fadeSlideUp 0.3s $ease-out both;
+}
+
+@include reduce-motion {
+  .answer {
+    animation: none;
+  }
+}

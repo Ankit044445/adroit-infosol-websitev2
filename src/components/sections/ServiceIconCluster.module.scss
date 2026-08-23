@@ -1,0 +1,42 @@
+@use "../../styles/variables" as *;
+
+.cluster {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-3;
+  max-width: 340px;
+  margin-inline: auto;
+}
+
+.tile {
+  aspect-ratio: 1;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform $dur-base $ease-out;
+
+  &:nth-child(3n) {
+    transform: translateY(-6px);
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.05);
+  }
+}
+
+.green {
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+}
+
+.sky {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.indigo {
+  background: var(--indigo-soft);
+  color: var(--indigo);
+}

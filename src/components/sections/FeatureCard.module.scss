@@ -1,0 +1,53 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.wrap {
+  height: 100%;
+}
+
+.card {
+  @include card-surface;
+  @include card-hover;
+  height: 100%;
+  padding: $space-6;
+}
+
+.iconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-md;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $space-4;
+  @include icon-pop;
+}
+
+.card:hover .iconWrap {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.green .iconWrap {
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+}
+
+.sky .iconWrap {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.indigo .iconWrap {
+  background: var(--indigo-soft);
+  color: var(--indigo);
+}
+
+.title {
+  font-size: 1.05rem;
+  margin-bottom: $space-2;
+}
+
+.desc {
+  font-size: $fs-body-sm;
+  margin: 0;
+}

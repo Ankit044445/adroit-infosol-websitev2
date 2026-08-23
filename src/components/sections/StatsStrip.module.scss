@@ -1,0 +1,56 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-5;
+
+  @include respond(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  @include card-surface;
+  @include card-hover;
+  padding: $space-5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.iconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-md;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+  margin-bottom: $space-2;
+  @include icon-pop;
+}
+
+.card:hover .iconWrap {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.value {
+  font-family: $font-heading;
+  font-weight: 800;
+  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  background: linear-gradient(135deg, var(--heading) 0%, var(--brand-strong) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: $ls-tighter;
+  display: inline-block;
+}
+
+.label {
+  font-size: $fs-body-sm;
+  font-weight: 600;
+  color: var(--text-muted);
+}

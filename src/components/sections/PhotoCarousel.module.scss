@@ -1,0 +1,183 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.wrap {
+  width: 100%;
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $space-6;
+  margin-bottom: $space-6;
+
+  h2 {
+    margin-top: $space-3;
+  }
+
+  p {
+    margin-top: $space-3;
+    margin-bottom: 0;
+    max-width: 60ch;
+  }
+}
+
+.nav {
+  display: none;
+  flex-shrink: 0;
+  gap: $space-2;
+
+  @include respond(sm) {
+    display: flex;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-pill;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--heading);
+    transition: background-color $dur-fast $ease-out, border-color $dur-fast $ease-out,
+      color $dur-fast $ease-out, opacity $dur-fast $ease-out;
+    @include focus-ring;
+
+    &:hover:not(:disabled) {
+      background: var(--brand-solid);
+      border-color: var(--brand-solid);
+      color: var(--text-on-brand);
+    }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+  }
+}
+
+.track {
+  display: flex;
+  gap: $space-5;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-bottom: $space-2;
+  margin: 0 clamp(-1.25rem, -4vw, -2.5rem);
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+
+  // Native scrollbar hidden - the dot indicators below are the real control.
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: min(360px, 82vw);
+  scroll-snap-align: start;
+  margin: 0;
+
+  @include respond(md) {
+    width: min(400px, 40vw);
+  }
+
+  figcaption {
+    margin-top: $space-3;
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: $fs-body-sm;
+    color: var(--text-muted);
+  }
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out, border-color $dur-base $ease-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--brand);
+
+    img {
+      transform: scale(1.05);
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s $ease-out;
+  }
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  border: 2px dashed var(--border-strong);
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  box-shadow: none;
+
+  span {
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: $fs-body-sm;
+  }
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-2;
+  margin-top: $space-6;
+}
+
+// Visual pill stays small (see .pill), but the tappable area meets the
+// WCAG 2.2 24x24 CSS px minimum target size.
+.dotBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  @include focus-ring;
+}
+
+.pill,
+.pillActive {
+  display: block;
+  width: 24px;
+  height: 7px;
+  border-radius: $radius-pill;
+  background: var(--border-strong);
+  transform: scaleX(#{7 / 24});
+  transform-origin: center;
+  transition: background-color $dur-base $ease-out, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillActive {
+  background: var(--brand-solid);
+  transform: scaleX(1);
+}
+

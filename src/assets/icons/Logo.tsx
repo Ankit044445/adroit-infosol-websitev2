@@ -1,0 +1,46 @@
+interface LogoProps {
+  size?: number;
+  withWordmark?: boolean;
+  className?: string;
+}
+
+/** Recreation of the Adroit Infosol mark — layered rotated squares with
+ * connected-node dots, kept in the original brand colors. */
+export function Logo({ size = 40, withWordmark = true, className = "" }: LogoProps) {
+  return (
+    <span className={`d-inline-flex align-items-center gap-2 ${className}`}>
+      <svg width={size} height={size} viewBox="0 0 59 59" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="logo-fade" x1="32.4" y1="35.9" x2="35.9" y2="35.9" gradientUnits="userSpaceOnUse">
+            <stop offset="0.4" stopColor="#fff" />
+            <stop offset="1" stopColor="#699b41" />
+          </linearGradient>
+        </defs>
+        <rect
+          x="7.7" y="7.7" width="43.6" height="43.6" rx="9.5" ry="9.5"
+          fill="#2b3d97" opacity="0.35"
+          transform="rotate(-25 29.5 29.5)"
+        />
+        <rect
+          x="7.7" y="7.7" width="43.6" height="43.6" rx="9.5" ry="9.5"
+          fill="#2b3d97" opacity="0.55"
+          transform="rotate(-35 29.5 29.5)"
+        />
+        <rect x="7.7" y="7.7" width="43.6" height="43.6" rx="9.5" ry="9.5" fill="#2b3d97" transform="rotate(-45 29.5 29.5)" />
+        <circle cx="29.5" cy="21.4" r="3.3" fill="#29a9e1" />
+        <circle cx="19.9" cy="35.9" r="3.3" fill="#fff" />
+        <circle cx="29.3" cy="35.8" r="3.3" fill="#fff" />
+        <circle cx="38.9" cy="35.9" r="3.3" fill="#699b41" />
+        <circle cx="24.6" cy="28.6" r="3.3" fill="#fff" />
+        <circle cx="34.1" cy="28.6" r="3.3" fill="#fff" />
+        <path d="M32.4 35.6s1.6 2.5 3.5 0v2.6s-1.7-2.6-3.6 0v-2.6h.1z" fill="url(#logo-fade)" />
+      </svg>
+      {withWordmark && (
+        <span className="fw-brand">
+          <span style={{ color: "var(--heading)" }}>Adroit</span>{" "}
+          <span style={{ color: "var(--brand-strong)" }}>Infosol</span>
+        </span>
+      )}
+    </span>
+  );
+}

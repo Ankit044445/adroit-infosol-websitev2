@@ -1,0 +1,32 @@
+// Bootstrap is used ONLY for its grid engine + responsive utilities
+// (container/row/col, breakpoints, spacing/display utilities) so layout
+// and responsiveness are battle-tested — never its default component
+// skins, which is what makes Bootstrap sites look generic.
+@use "variables" as vars;
+
+$primary: vars.$green-600;
+$secondary: vars.$indigo-700;
+$info: vars.$sky-500;
+$body-bg: vars.$white;
+$body-color: vars.$stone-900;
+$font-family-base: vars.$font-body;
+$border-radius: 12px;
+$grid-gutter-width: 1.75rem;
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1280px,
+);
+$enable-negative-margins: true;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/utilities/api";

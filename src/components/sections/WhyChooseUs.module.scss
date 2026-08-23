@@ -1,0 +1,75 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// 4-col x 2-row bento: the flagship tile owns a 2x2 block, the four value
+// tiles fill the remaining 2x2 as single cells - exact cell count for the
+// content, no filler tiles.
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4;
+
+  @include respond(md) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+.flagship {
+  @include card-hover;
+  grid-column: span 2;
+  background: linear-gradient(135deg, $indigo-800, $indigo-600);
+  border-radius: $radius-lg;
+  padding: $space-6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $space-3;
+  color: #fff;
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out;
+
+  @include respond(md) {
+    grid-row: span 2;
+  }
+}
+
+.flagshipValue {
+  font-family: $font-heading;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  letter-spacing: $ls-tighter;
+  line-height: 1;
+}
+
+.flagshipLabel {
+  font-size: $fs-body;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 28ch;
+}
+
+.tile {
+  @include card-surface;
+  @include card-hover;
+  padding: $space-5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $space-3;
+
+  svg {
+    color: var(--brand-strong);
+    @include icon-pop;
+  }
+
+  &:hover svg {
+    transform: scale(1.08) rotate(-4deg);
+  }
+
+  span {
+    font-family: $font-heading;
+    font-weight: 700;
+    font-size: $fs-body-sm;
+    color: var(--heading);
+    line-height: 1.3;
+  }
+}

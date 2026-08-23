@@ -1,0 +1,69 @@
+@use "../../styles/variables" as *;
+
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.track {
+  gap: $space-4;
+
+  // Pause on hover so the labels are actually readable — the marquee is
+  // decorative motion, not something that should fight the user's cursor.
+  .marquee:hover & {
+    animation-play-state: paused;
+  }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+  padding: 0.75rem 1.4rem 0.75rem 1.1rem;
+  border-radius: $radius-pill;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-family: $font-heading;
+  font-weight: 600;
+  font-size: $fs-body-sm;
+  color: var(--text);
+  transition: transform $dur-fast $ease-out, border-color $dur-fast $ease-out,
+    color $dur-fast $ease-out, box-shadow $dur-fast $ease-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand);
+    color: var(--brand-strong);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+// Real brand marks from Simple Icons, rendered as a CSS mask so a single
+// fetched shape can be recolored per theme (avoids marks like Apple's that
+// are pure black by default and would vanish on a dark background).
+.mark {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background-color: var(--text-muted);
+  -webkit-mask-image: var(--mark-src);
+  mask-image: var(--mark-src);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color $dur-fast $ease-out;
+}
+
+.pill:hover .mark {
+  background-color: var(--brand-strong);
+}
+
+.fallbackIcon {
+  flex-shrink: 0;
+  color: var(--brand-strong);
+}

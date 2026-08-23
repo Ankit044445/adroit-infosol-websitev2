@@ -1,0 +1,122 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// Bottom padding is deliberately smaller than top: the section right after
+// (StatsStrip) brings its own top padding via the shared .section rhythm,
+// so a full clamp(...7rem) here on top of that stacked into ~190px of dead
+// space at wide viewports.
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.blobA {
+  width: 480px;
+  height: 480px;
+  top: -220px;
+  right: -160px;
+}
+
+.blobB {
+  width: 340px;
+  height: 340px;
+  bottom: -160px;
+  left: -140px;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: center;
+  grid-template-columns: 1fr;
+
+  @include respond(lg) {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+.copy {
+  max-width: 620px;
+}
+
+.title {
+  margin-bottom: $space-5;
+  font-size: $fs-display;
+}
+
+.highlight {
+  background: linear-gradient(135deg, var(--brand-strong) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.desc {
+  margin-bottom: $space-6;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4;
+}
+
+// ---- Hero visual: a real photo, not another stat repeat - the numbers
+// already live in StatsStrip right below this section. ----
+
+.visual {
+  display: none;
+
+  @include respond(md) {
+    display: block;
+  }
+}
+
+.frame {
+  position: relative;
+  max-width: 460px;
+  margin-inline: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.4s $ease-out;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include reduce-motion {
+    transform: none;
+    transition: none;
+  }
+}
+
+.badge {
+  position: absolute;
+  z-index: 2;
+  left: $space-5;
+  bottom: $space-5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem 0.6rem 0.6rem;
+  border-radius: $radius-pill;
+  background: rgba(20, 18, 26, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: $fs-body-sm;
+  box-shadow: 0 8px 20px -8px rgba(12, 10, 16, 0.4);
+}

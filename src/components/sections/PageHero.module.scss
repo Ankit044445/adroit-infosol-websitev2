@@ -1,0 +1,62 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(2.5rem, 5vw, 4rem);
+  background: var(--bg-alt);
+}
+
+.blobA {
+  width: 420px;
+  height: 420px;
+  top: -160px;
+  right: -140px;
+}
+
+.blobB {
+  width: 320px;
+  height: 320px;
+  bottom: -180px;
+  left: -120px;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+
+.split {
+  max-width: none;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+  grid-template-columns: 1fr;
+
+  @include respond(lg) {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.copy {
+  max-width: 620px;
+}
+
+.visual {
+  display: none;
+
+  @include respond(md) {
+    display: block;
+  }
+}
+
+.title {
+  margin-bottom: $space-5;
+}
+
+.desc {
+  max-width: 60ch;
+  margin-bottom: $space-5;
+}

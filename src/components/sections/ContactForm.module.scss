@@ -1,0 +1,120 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.form {
+  @include card-surface;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.row {
+  display: grid;
+  gap: $space-5;
+
+  @include respond(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  span {
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: $fs-body-sm;
+    color: var(--heading);
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: $font-body;
+    font-size: $fs-body;
+    color: var(--text);
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: $radius-md;
+    padding: 0.85rem 1.1rem;
+    transition: border-color $dur-fast $ease-out, box-shadow $dur-fast $ease-out;
+    resize: vertical;
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+
+    &:hover {
+      border-color: var(--border-strong);
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px var(--brand-soft);
+    }
+  }
+
+  // The native select arrow is the browser's own OS-chrome widget - it
+  // doesn't match any other control on the page (every input/button here is
+  // custom-styled). Replace it with a plain chevron drawn the same way the
+  // rest of the icon system works, so the dropdown looks like it belongs.
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 256 256'%3E%3Cpath fill='%23746e82' d='M215.4 92.9L128 180.7L40.6 92.9a12 12 0 0 0-17 17l96 96a12 12 0 0 0 17 0l96-96a12 12 0 0 0-17-17Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 16px;
+    padding-right: 2.6rem;
+  }
+}
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.interestPill {
+  font-family: $font-heading;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: $radius-pill;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all $dur-fast $ease-out;
+
+  &:hover {
+    color: var(--text);
+    border-color: var(--brand);
+    background: var(--brand-soft);
+  }
+}
+
+.activePill {
+  background: var(--brand-solid) !important;
+  color: var(--text-on-brand) !important;
+  border-color: var(--brand-solid) !important;
+  box-shadow: 0 2px 8px rgba(84, 125, 52, 0.3);
+}
+
+.error {
+  color: var(--danger);
+  font-size: $fs-body-sm;
+  font-weight: 600;
+  margin: 0;
+}
+
+.success {
+  color: var(--brand-strong);
+  font-size: $fs-body-sm;
+  font-weight: 600;
+  margin: 0;
+}
+

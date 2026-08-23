@@ -1,0 +1,34 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: $font-heading;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  transition: all $dur-fast $ease-out;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  padding: 0.25rem 0.55rem;
+  margin-top: 0.35rem;
+
+  &:hover {
+    color: var(--brand-strong);
+    border-color: var(--brand);
+    background: var(--brand-soft);
+  }
+
+  &.pill {
+    border-radius: $radius-pill;
+    padding: 0.35rem 0.75rem;
+  }
+}
+
+.checkIcon {
+  color: var(--brand-strong);
+}

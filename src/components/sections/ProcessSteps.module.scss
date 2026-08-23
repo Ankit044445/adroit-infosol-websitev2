@@ -1,0 +1,82 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// Connected vertical timeline - sequential process reads better as a
+// timeline than a flat grid, since the six stages genuinely run in order.
+.list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 720px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+    z-index: 0;
+  }
+}
+
+.item {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: $space-5;
+  align-items: start;
+}
+
+.node {
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-pill;
+  background: var(--surface);
+  border: 2px solid var(--brand);
+  color: var(--brand-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-heading;
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  transition: transform 0.28s $ease-out, background-color $dur-base $ease-out,
+    color $dur-base $ease-out;
+}
+
+.item:hover .node {
+  transform: scale(1.08);
+  background: var(--brand-solid);
+  color: var(--text-on-brand);
+}
+
+@include reduce-motion {
+  .node {
+    transition: none;
+  }
+}
+
+.content {
+  @include card-surface;
+  @include card-hover;
+  padding: $space-5 $space-6;
+}
+
+.title {
+  font-size: 1.05rem;
+  margin-bottom: $space-2;
+}
+
+.desc {
+  font-size: $fs-body-sm;
+  margin: 0;
+}

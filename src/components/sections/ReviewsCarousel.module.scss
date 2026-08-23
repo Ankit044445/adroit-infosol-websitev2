@@ -1,0 +1,117 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.wrap {
+  width: 100%;
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $space-6;
+  margin-bottom: $space-6;
+
+  h2 {
+    margin-top: $space-3;
+  }
+}
+
+.nav {
+  display: none;
+  flex-shrink: 0;
+  gap: $space-2;
+
+  @include respond(sm) {
+    display: flex;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-pill;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--heading);
+    transition: background-color $dur-fast $ease-out, border-color $dur-fast $ease-out,
+      color $dur-fast $ease-out;
+
+    &:hover {
+      background: var(--brand-solid);
+      border-color: var(--brand-solid);
+      color: var(--text-on-brand);
+    }
+
+    @include focus-ring;
+  }
+}
+
+.track {
+  display: flex;
+  gap: $space-5;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-bottom: $space-2;
+  margin: 0 clamp(-1.25rem, -4vw, -2.5rem);
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: min(420px, 84vw);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+
+  @include respond(md) {
+    width: min(460px, 44vw);
+  }
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-2;
+  margin-top: $space-6;
+}
+
+.dotBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  @include focus-ring;
+}
+
+.pill,
+.pillActive {
+  display: block;
+  width: 24px;
+  height: 7px;
+  border-radius: $radius-pill;
+  background: var(--border-strong);
+  transform: scaleX(#{7 / 24});
+  transform-origin: center;
+  transition: background-color $dur-base $ease-out, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillActive {
+  background: var(--brand-solid);
+  transform: scaleX(1);
+}
+

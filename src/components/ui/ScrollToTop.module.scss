@@ -1,0 +1,45 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.button {
+  position: fixed;
+  bottom: $space-6;
+  right: $space-6;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-pill;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--brand-strong);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity $dur-base $ease-out, transform $dur-base $ease-out,
+    visibility $dur-base $ease-out, background-color $dur-fast $ease-out,
+    color $dur-fast $ease-out, border-color $dur-fast $ease-out;
+
+  &:hover {
+    background: var(--brand-solid);
+    color: var(--text-on-brand);
+    border-color: var(--brand-solid);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  @include reduce-motion {
+    transition: opacity $dur-base $ease-out, visibility $dur-base $ease-out;
+    transform: none !important;
+  }
+}
