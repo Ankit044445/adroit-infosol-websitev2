@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import type { RouteObject } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
@@ -9,21 +9,18 @@ import { WorkCulture } from "./pages/WorkCulture";
 import { Contact } from "./pages/Contact";
 import { NotFound } from "./pages/NotFound";
 
-export default function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/:slug" element={<ServiceDetail />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/work-culture" element={<WorkCulture />} />
-          <Route path="/contact-us" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
-}
+export const routes: RouteObject[] = [
+  {
+    element: <Layout />,
+    children: [
+      { path: "/", Component: Home },
+      { path: "/about-us", Component: About },
+      { path: "/services", Component: Services },
+      { path: "/services/:slug", Component: ServiceDetail },
+      { path: "/portfolio", Component: Portfolio },
+      { path: "/work-culture", Component: WorkCulture },
+      { path: "/contact-us", Component: Contact },
+      { path: "*", Component: NotFound },
+    ],
+  },
+];
