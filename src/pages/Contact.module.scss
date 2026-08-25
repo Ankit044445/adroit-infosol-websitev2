@@ -31,9 +31,6 @@
   align-items: start;
 
   @include respond(lg) {
-    // Slightly wider right column: the video needs more room to read as a
-    // real visual (not a token thumbnail), and it balances the two
-    // columns' heights instead of leaving empty space under a smaller video.
     grid-template-columns: 0.9fr 1.1fr;
   }
 }
@@ -42,9 +39,6 @@
   max-width: 560px;
 }
 
-// Connected vertical timeline (compact version of the ProcessSteps
-// pattern used on Services/ServiceDetail) - a real ordered sequence reads
-// better as a line-connected flow than a flat 2x2 grid of circles.
 .steps {
   position: relative;
   list-style: none;
@@ -91,8 +85,6 @@
   flex-shrink: 0;
 }
 
-// Sidebar next to the form - reassurance to read while filling it in,
-// rather than living up in the hero where it competed with the video.
 .gains {
   max-width: 420px;
 
@@ -135,10 +127,6 @@
   }
 }
 
-// ---- "Get in Touch" reach cards: three standalone cards (not one row of
-// dividers) so each gets real breathing room and matches the card language
-// used everywhere else on the site (StatsStrip, FeatureCard) instead of
-// being the one place on the page using a cramped divider-row pattern.
 .reachCard {
   @include card-surface;
   @include card-hover;
@@ -228,6 +216,17 @@ a.reachValue:hover {
 .calendlyLink {
   margin-top: $space-4;
   width: 100%;
+  background: var(--brand-soft);
+  border-color: var(--brand);
+  color: var(--brand-strong);
+  box-shadow: var(--shadow-sm);
+
+  &:hover {
+    background: var(--brand-solid);
+    border-color: var(--brand-solid);
+    color: var(--text-on-brand);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .formRow {

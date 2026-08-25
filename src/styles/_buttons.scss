@@ -49,15 +49,28 @@
 }
 
 .btn-secondary {
-  background: transparent;
+  background: var(--surface-raised);
   color: var(--heading);
   border-color: var(--border-strong);
+  box-shadow: 0 1px 2px rgba(20, 18, 26, 0.04);
 
+  // fills solid on hover instead of just changing border/text color
   &:hover {
-    border-color: var(--brand);
-    color: var(--brand-strong);
+    background: var(--brand-solid);
+    border-color: var(--brand-solid);
+    color: var(--text-on-brand);
+    box-shadow: var(--shadow-brand);
     transform: translateY(-2px);
   }
+
+  &:hover svg {
+    color: var(--text-on-brand);
+  }
+}
+
+// border-strong is too faint in light mode, bump it up (dark mode is fine)
+:root:not([data-theme="dark"]) .btn-secondary {
+  border-color: $stone-400;
 }
 
 .btn-ghost {
@@ -70,9 +83,6 @@
   }
 }
 
-// Solid white on a dark/gradient panel reads more confident than a
-// translucent glass pill - the panel already carries the color, so the
-// CTA's job is to be the highest-contrast thing on it.
 .btn-on-dark {
   background: #fff;
   color: $indigo-800;

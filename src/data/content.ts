@@ -1,20 +1,17 @@
-// Centralized site copy. Content is preserved from the existing
-// Adroit Infosol website — only presentation/UI is redesigned.
-
 export interface ServiceItem {
   slug: string;
   title: string;
   short: string;
+  tagline: string;
   detail: string;
   icon: string;
-  stat: { value: string; label: string };
-  capabilities: string[];
   technologies: string[];
-  deliverables: string[];
   ctaLabel: string;
+  cta: { title: string; description: string };
   whyPlatform: { heading: string; paragraphs: string[] };
   whyUs: { title: string; desc: string }[];
   expertise: string[];
+  process?: { title: string; desc: string }[];
 }
 
 export const services: ServiceItem[] = [
@@ -24,18 +21,12 @@ export const services: ServiceItem[] = [
     icon: "android",
     short:
       "Build powerful, secure, and high-performance Android applications tailored to your business needs.",
+    tagline: "Turn your Android app idea into a powerful digital solution built to solve real business challenges and create lasting value.",
     detail:
       "Our Android app development services help businesses build secure, scalable, and feature-rich mobile applications tailored to their unique requirements. Whether you need a customer-facing app, an enterprise mobility solution, or an IoT-enabled application, our experienced team develops reliable Android solutions that enhance customer engagement, streamline business operations, and support long-term digital growth.",
-    stat: { value: "60+", label: "Android apps shipped to Play Store" },
-    capabilities: [
-      "Native Kotlin & Java development for phones, tablets, and foldables",
-      "Enterprise mobility apps with offline-first sync and role-based access",
-      "Play Store publishing, ASO, and release-pipeline management",
-      "Legacy Android app modernization and performance tuning",
-    ],
     technologies: ["Kotlin", "Java", "Jetpack Compose", "Firebase", "Room", "REST/GraphQL"],
-    deliverables: ["Architecture & tech spec", "Pixel-accurate UI build", "QA-tested APK/AAB", "Play Store rollout"],
     ctaLabel: "Discuss Your Android Project",
+    cta: { title: "Have an Android App Idea? Let's Build It Together.", description: "Whether you have a new app idea or want to enhance an existing Android application, our team is ready to help you turn it into a reliable digital solution built for your business goals." },
     whyPlatform: {
       heading: "Why Choose Android for Your Business?",
       paragraphs: [
@@ -63,6 +54,32 @@ export const services: ServiceItem[] = [
       "Fitness & Activity Tracking Apps",
       "AI-Powered Apps & API Integration",
     ],
+    process: [
+      {
+        title: "Requirement & Platform Discovery",
+        desc: "Understand your business goals, target Android devices, and feature scope to define a clear technical roadmap.",
+      },
+      {
+        title: "UI/UX for Android",
+        desc: "Design interfaces that follow Material Design and Android usability patterns while staying true to your brand.",
+      },
+      {
+        title: "Native Development",
+        desc: "Build with Kotlin, Java, and Jetpack Compose, integrating hardware, APIs, and third-party services as needed.",
+      },
+      {
+        title: "Device & OS Testing",
+        desc: "Validate performance, compatibility, and stability across Android versions, screen sizes, and device manufacturers.",
+      },
+      {
+        title: "Play Store Launch",
+        desc: "Handle store listing, release builds, and rollout so your app reaches users smoothly on Google Play.",
+      },
+      {
+        title: "Updates & Support",
+        desc: "Provide ongoing maintenance, feature updates, and support as Android OS versions and user needs evolve.",
+      },
+    ],
   },
   {
     slug: "ios-app-development",
@@ -70,18 +87,12 @@ export const services: ServiceItem[] = [
     icon: "ios",
     short:
       "Deliver premium iPhone and iPad applications with seamless performance and intuitive user experiences.",
+    tagline: "Turn your app idea into a refined iOS experience designed to engage Apple users and create meaningful value for your business.",
     detail:
       "Our iOS app development services help businesses create premium applications that deliver exceptional experiences across iPhone and iPad devices. Whether you're launching a customer-facing app, a business application, or an enterprise solution, we develop secure, intuitive, and high-performance iOS applications that strengthen your brand, engage users, and drive long-term business success.",
-    stat: { value: "40+", label: "iOS apps live on the App Store" },
-    capabilities: [
-      "Native Swift & SwiftUI development for iPhone and iPad",
-      "App Store submission, review handling, and TestFlight rollouts",
-      "Apple ecosystem integrations, including Apple Pay, HealthKit, Widgets, and Push",
-      "Human Interface Guideline-compliant, accessibility-first UI",
-    ],
     technologies: ["Swift", "SwiftUI", "Combine", "Core Data", "CloudKit", "REST/GraphQL"],
-    deliverables: ["UX-audited wireframes", "Native iOS build", "TestFlight beta", "App Store launch"],
     ctaLabel: "Discuss Your iOS Project",
+    cta: { title: "Ready to Build Your iOS App?", description: "Whether you have a new app idea or want to enhance an existing iOS application, our team is ready to help you turn it into a reliable digital solution built for your business goals." },
     whyPlatform: {
       heading: "Why Choose iOS for Your Business?",
       paragraphs: [
@@ -108,6 +119,32 @@ export const services: ServiceItem[] = [
       "Image, Video Capture & Annotation Apps",
       "Fitness & Activity Tracking Apps",
     ],
+    process: [
+      {
+        title: "Requirement & Platform Discovery",
+        desc: "Understand your business goals, target Apple devices, and feature scope to define a clear technical roadmap.",
+      },
+      {
+        title: "UI/UX for iOS",
+        desc: "Design interfaces that follow Apple's Human Interface Guidelines while staying true to your brand and user needs.",
+      },
+      {
+        title: "Native Development",
+        desc: "Build with Swift and SwiftUI, integrating device capabilities, APIs, and third-party services as needed.",
+      },
+      {
+        title: "Device & OS Testing",
+        desc: "Validate performance, compatibility, and stability across iPhone, iPad, and current iOS versions.",
+      },
+      {
+        title: "App Store Launch",
+        desc: "Handle App Store submission, review requirements, and release builds for a smooth launch.",
+      },
+      {
+        title: "Updates & Support",
+        desc: "Provide ongoing maintenance, feature updates, and support as iOS versions and user needs evolve.",
+      },
+    ],
   },
   {
     slug: "cross-platform-app-development",
@@ -115,18 +152,12 @@ export const services: ServiceItem[] = [
     icon: "crossplatform",
     short:
       "Build high-quality mobile applications for Android and iOS using Flutter and React Native.",
+    tagline: "Build powerful mobile experiences across Android and iOS with efficient, scalable solutions using Flutter and React Native.",
     detail:
       "Develop Android and iOS applications efficiently with a shared development approach using Flutter and React Native. Cross-platform development helps businesses streamline development, maintain a consistent experience across platforms, and simplify ongoing enhancements and maintenance.",
-    stat: { value: "1", label: "codebase, 2 platforms shipped in parallel" },
-    capabilities: [
-      "Single codebase delivery across Android and iOS with Flutter or React Native",
-      "Shared design system so both platforms stay pixel-consistent",
-      "Native-module bridging for camera, payments, and device APIs",
-      "Faster iteration cycles for startups validating product-market fit",
-    ],
     technologies: ["Flutter", "React Native", "Dart", "TypeScript", "Firebase", "Fastlane"],
-    deliverables: ["Shared component library", "Dual-platform build", "Automated CI/CD", "Store submissions"],
     ctaLabel: "Discuss Your App Project",
+    cta: { title: "Ready to Build Your Cross-Platform App?", description: "Whether you have a new app idea or want to enhance an existing application, our team is ready to help you build a reliable cross-platform solution designed for your business goals." },
     whyPlatform: {
       heading: "Why Choose Cross-Platform App Development?",
       paragraphs: [
@@ -153,6 +184,32 @@ export const services: ServiceItem[] = [
       "Image, Video Capture & Annotation Apps",
       "Fitness & Activity Tracking Apps",
     ],
+    process: [
+      {
+        title: "Requirement & Scope Discovery",
+        desc: "Understand your business goals and target platforms to define shared vs. platform-specific feature scope.",
+      },
+      {
+        title: "Shared UI/UX Design",
+        desc: "Design a consistent experience that works naturally on both Android and iOS without feeling generic on either.",
+      },
+      {
+        title: "Cross-Platform Development",
+        desc: "Build with Flutter or React Native, wiring in native modules for platform-specific features where needed.",
+      },
+      {
+        title: "Multi-Device Testing",
+        desc: "Validate behavior, performance, and UI consistency across a range of Android and iOS devices.",
+      },
+      {
+        title: "Dual Store Launch",
+        desc: "Prepare and submit builds for both Google Play and the App Store, coordinating a synchronized release.",
+      },
+      {
+        title: "Updates & Support",
+        desc: "Maintain one shared codebase going forward, rolling out fixes and features to both platforms together.",
+      },
+    ],
   },
   {
     slug: "custom-web-applications",
@@ -160,18 +217,12 @@ export const services: ServiceItem[] = [
     icon: "web",
     short:
       "Develop secure, scalable, and responsive web applications that streamline business operations.",
+    tagline: "Transform complex business requirements into secure, scalable web applications designed to streamline operations and support long-term growth.",
     detail:
       "Our custom web application development services help businesses streamline operations, automate workflows, and enhance customer engagement through secure and scalable web solutions. From business portals and SaaS platforms to enterprise applications and workflow automation systems, we build responsive, high-performance web applications tailored to your business objectives and future growth.",
-    stat: { value: "45+", label: "web platforms in production" },
-    capabilities: [
-      "SaaS platforms, internal tools, and customer portals built to scale",
-      "Workflow automation that replaces manual, spreadsheet-driven processes",
-      "Role-based dashboards with real-time data and reporting",
-      "API-first architecture ready for future mobile or third-party integrations",
-    ],
     technologies: ["React", "Node.js", "PostgreSQL", "MySQL", "AWS", "Wappler"],
-    deliverables: ["System architecture", "Responsive web build", "Admin & reporting dashboard", "Cloud deployment"],
     ctaLabel: "Discuss Your Web Project",
+    cta: { title: "Ready to Build Your Custom Web Application?", description: "Whether you have a new product idea or want to modernize an existing web application, our team is ready to help you build a reliable, scalable solution designed around your business goals." },
     whyPlatform: {
       heading: "Why Choose Custom Web Applications for Your Business?",
       paragraphs: [
@@ -200,6 +251,32 @@ export const services: ServiceItem[] = [
       "Database Design & Optimization",
       "MySQL Query & Performance Optimization",
     ],
+    process: [
+      {
+        title: "Requirement & Workflow Mapping",
+        desc: "Understand your business processes, data model, and integration needs to define a clear technical scope.",
+      },
+      {
+        title: "System Architecture & UI/UX",
+        desc: "Design a scalable application structure and intuitive interfaces suited to your team's day-to-day workflows.",
+      },
+      {
+        title: "Full-Stack Development",
+        desc: "Build the front-end, back-end, and database layer together, wiring in APIs and third-party integrations.",
+      },
+      {
+        title: "QA & Security Testing",
+        desc: "Validate functionality, data integrity, and security across the roles and permissions your application needs.",
+      },
+      {
+        title: "Deployment",
+        desc: "Deploy to your chosen cloud or hosting environment with proper configuration, backups, and monitoring in place.",
+      },
+      {
+        title: "Maintenance & Enhancements",
+        desc: "Provide ongoing support, performance tuning, and new features as your business processes evolve.",
+      },
+    ],
   },
   {
     slug: "limesurvey-customization",
@@ -207,18 +284,12 @@ export const services: ServiceItem[] = [
     icon: "survey",
     short:
       "Maximize the power of LimeSurvey with custom themes, plugins, integrations, and feature enhancements.",
+    tagline: "Extend LimeSurvey beyond its standard capabilities with custom plugins, themes, integrations, and tailored survey solutions built around your unique requirements.",
     detail:
       "Our LimeSurvey development and customization services help organizations build powerful, flexible, and fully customized survey solutions tailored to their specific requirements. From custom themes, plugins, and integrations to feature enhancements, workflow automation, and performance optimization, we extend LimeSurvey's capabilities to deliver secure, scalable, and user-friendly survey platforms for research, data collection, and business intelligence.",
-    stat: { value: "10+", label: "years of LimeSurvey specialization" },
-    capabilities: [
-      "Custom themes and branded survey experiences",
-      "Bespoke plugin development for scoring, logic, and workflows",
-      "Integrations with CRM, analytics, and payment systems",
-      "Performance tuning for high-volume research and enterprise surveys",
-    ],
     technologies: ["LimeSurvey", "PHP", "MySQL", "REST APIs", "Twig"],
-    deliverables: ["Custom theme/plugin", "Third-party integration", "QA on live survey flows", "Ongoing support"],
     ctaLabel: "Discuss Your LimeSurvey Requirements",
+    cta: { title: "Need More from LimeSurvey? Let's Make It Possible.", description: "Whether you need advanced customization, custom workflows, plugins, integrations, or functionality beyond standard LimeSurvey capabilities, our experienced team is ready to build a solution tailored to your requirements." },
     whyPlatform: {
       heading: "Why Choose LimeSurvey?",
       paragraphs: [
@@ -244,6 +315,32 @@ export const services: ServiceItem[] = [
       "Custom Data Export & Integration Solutions",
       "Mobile App Solutions for LimeSurvey",
     ],
+    process: [
+      {
+        title: "Requirement & Survey Audit",
+        desc: "Review your existing LimeSurvey setup or requirements to define the customization and integration scope.",
+      },
+      {
+        title: "Theme & Workflow Design",
+        desc: "Plan custom themes, question flows, and survey logic that match your branding and respondent experience.",
+      },
+      {
+        title: "Plugin & Feature Development",
+        desc: "Build custom plugins, question types, and integrations on top of LimeSurvey's core to extend its capabilities.",
+      },
+      {
+        title: "Testing Across Survey Scenarios",
+        desc: "Validate logic branching, data capture, and edge cases across devices and respondent conditions.",
+      },
+      {
+        title: "Deployment & Configuration",
+        desc: "Deploy the customized instance with proper server configuration, security, and data-handling practices.",
+      },
+      {
+        title: "Ongoing Support & Enhancements",
+        desc: "Provide continued plugin updates, LimeSurvey upgrades, and new features as your survey needs grow.",
+      },
+    ],
   },
   {
     slug: "cloud-devops-solutions",
@@ -251,18 +348,12 @@ export const services: ServiceItem[] = [
     icon: "cloud",
     short:
       "Accelerate software delivery with reliable cloud infrastructure and DevOps best practices.",
+    tagline: "Build secure, scalable cloud infrastructure and streamline software delivery with reliable DevOps practices and automation.",
     detail:
       "Our Cloud and DevOps services help businesses build secure, scalable, and resilient infrastructure that supports modern application development. From cloud migration and infrastructure setup to CI/CD pipeline automation, containerization, monitoring, and performance optimization, we streamline software delivery, improve operational efficiency, and ensure high availability for business-critical applications.",
-    stat: { value: "99.9%", label: "uptime across managed infrastructure" },
-    capabilities: [
-      "Cloud migration and infrastructure-as-code setup on AWS",
-      "CI/CD pipeline automation for fast, reliable releases",
-      "Docker containerization and orchestration",
-      "Monitoring, alerting, and cost optimization for production systems",
-    ],
     technologies: ["AWS", "Docker", "Terraform", "GitHub Actions", "Nginx", "Grafana"],
-    deliverables: ["Infra audit & plan", "CI/CD pipeline", "Containerized deployment", "Monitoring setup"],
     ctaLabel: "Discuss Your Cloud & DevOps Needs",
+    cta: { title: "Ready to Strengthen Your Cloud & DevOps Infrastructure?", description: "Whether you're moving to the cloud, improving an existing environment, or automating your deployment processes, our team is ready to help you build a reliable, scalable infrastructure that supports your business and applications." },
     whyPlatform: {
       heading: "Why Cloud & DevOps for Your Business?",
       paragraphs: [
@@ -290,6 +381,32 @@ export const services: ServiceItem[] = [
       "Firebase & Cloud Service Integration",
       "CI/CD Pipeline Setup & Automation",
     ],
+    process: [
+      {
+        title: "Assessment & Planning",
+        desc: "Understand your applications, infrastructure, business requirements, and deployment needs to define the right cloud and DevOps strategy.",
+      },
+      {
+        title: "Cloud Architecture",
+        desc: "Design secure, scalable, and reliable cloud architecture aligned with your application requirements and future growth.",
+      },
+      {
+        title: "Infrastructure Setup",
+        desc: "Configure cloud computing, networking, databases, storage, and other required services for a reliable operating environment.",
+      },
+      {
+        title: "CI/CD & Automation",
+        desc: "Implement automated build and deployment pipelines to streamline software delivery, improve consistency, and reduce manual effort.",
+      },
+      {
+        title: "Testing & Deployment",
+        desc: "Validate infrastructure, configurations, and deployment workflows before securely deploying applications to the target environment.",
+      },
+      {
+        title: "Monitoring & Optimization",
+        desc: "Monitor infrastructure and continuously improve performance, reliability, scalability, and resource utilization as requirements evolve.",
+      },
+    ],
   },
   {
     slug: "iot-solutions",
@@ -297,18 +414,12 @@ export const services: ServiceItem[] = [
     icon: "iot",
     short:
       "Connect devices, collect real-time data, and automate business operations with smart IoT solutions.",
+    tagline: "Connect devices, collect real-time data, and build intelligent IoT solutions that improve operations, automate processes, and enable smarter business decisions.",
     detail:
       "Our IoT solutions help businesses connect devices, capture real-time data, and automate critical operations through intelligent, connected ecosystems. From industrial automation and smart home solutions to connected products and remote monitoring systems, we integrate hardware, mobile applications, cloud platforms, and data analytics to deliver secure, scalable, and future-ready IoT solutions.",
-    stat: { value: "24/7", label: "real-time device monitoring" },
-    capabilities: [
-      "Device connectivity, firmware integration, and edge data capture",
-      "Companion mobile apps for monitoring and remote control",
-      "Cloud data pipelines for real-time analytics and alerting",
-      "Industrial automation and smart-facility monitoring systems",
-    ],
     technologies: ["MQTT", "AWS IoT", "Node.js", "InfluxDB", "React", "Flutter"],
-    deliverables: ["Connectivity architecture", "Device dashboard", "Companion app", "Analytics & alerts"],
     ctaLabel: "Discuss Your IoT Project",
+    cta: { title: "Ready to Build Your IoT Solution?", description: "Whether you're developing a new connected product, integrating smart devices, or modernizing an existing IoT ecosystem, our team is ready to help you build secure, scalable, and reliable IoT solutions tailored to your business goals." },
     whyPlatform: {
       heading: "Why Choose IoT for Your Business?",
       paragraphs: [
@@ -336,6 +447,32 @@ export const services: ServiceItem[] = [
       "Mobile Apps for Connected Devices",
       "Real-Time Monitoring & Alerts",
     ],
+    process: [
+      {
+        title: "Discovery & Requirement Analysis",
+        desc: "Understand your business objectives, device ecosystem, connectivity requirements, and technical challenges to define the right IoT solution.",
+      },
+      {
+        title: "Solution Architecture & Device Integration",
+        desc: "Design the overall IoT architecture, including connected devices, communication protocols, mobile applications, cloud platforms, and backend systems.",
+      },
+      {
+        title: "Application & Platform Development",
+        desc: "Develop mobile applications, web dashboards, backend services, APIs, and cloud integrations that enable seamless device communication and data management.",
+      },
+      {
+        title: "Device Communication & Testing",
+        desc: "Validate hardware integration, Bluetooth/BLE communication, real-time data synchronization, security, and overall system reliability through comprehensive testing.",
+      },
+      {
+        title: "Deployment & System Integration",
+        desc: "Deploy the complete IoT solution, integrate connected devices with cloud services and business systems, and ensure smooth operation across the entire ecosystem.",
+      },
+      {
+        title: "Monitoring, Support & Continuous Improvement",
+        desc: "Monitor solution performance, optimize device connectivity, enhance features, and provide ongoing support as your IoT ecosystem grows.",
+      },
+    ],
   },
   {
     slug: "ui-ux-design",
@@ -343,18 +480,12 @@ export const services: ServiceItem[] = [
     icon: "uiux",
     short:
       "Create digital experiences your users will love with intuitive navigation and modern interfaces.",
+    tagline: "Create seamless user experiences and visually engaging interfaces that improve usability, increase engagement, and support your business goals.",
     detail:
       "Our UI/UX design services help businesses create intuitive, engaging, and user-centered digital experiences that balance aesthetics with functionality. From user research and wireframing to interactive prototypes and modern interface design, we design intuitive digital experiences that improve usability, increase user engagement, and strengthen your brand across web and mobile applications.",
-    stat: { value: "50+", label: "products designed end-to-end" },
-    capabilities: [
-      "User research, journey mapping, and information architecture",
-      "Wireframing and interactive, click-through prototypes",
-      "Modern UI design systems for web and mobile products",
-      "Usability testing and iterative design refinement",
-    ],
     technologies: ["Figma", "Adobe XD", "Design Systems", "Prototyping", "Usability Testing"],
-    deliverables: ["UX research summary", "Wireframes & prototype", "Visual UI kit", "Dev-ready design specs"],
     ctaLabel: "Discuss Your UI/UX Project",
+    cta: { title: "Ready to Design Better Digital Experiences?", description: "Whether you're building a new mobile app, redesigning an existing web application, or creating a complex enterprise platform, our UI/UX design team is ready to help you deliver intuitive, engaging, and user-centered digital experiences that support your business goals." },
     whyPlatform: {
       heading: "Why Choose UI/UX Design?",
       paragraphs: [
@@ -380,6 +511,32 @@ export const services: ServiceItem[] = [
       "Dashboard & Enterprise Application Design",
       "Product Design Consulting",
     ],
+    process: [
+      {
+        title: "Discovery & Research",
+        desc: "Understand your business goals, target audience, user needs, and project requirements to establish a strong design foundation.",
+      },
+      {
+        title: "UX Planning & Wireframing",
+        desc: "Create information architecture, user flows, and wireframes to define intuitive navigation and user interactions before visual design begins.",
+      },
+      {
+        title: "UI Design & Prototyping",
+        desc: "Design visually engaging interfaces and interactive prototypes that bring ideas to life and allow early feedback before development.",
+      },
+      {
+        title: "Usability Review & Refinement",
+        desc: "Evaluate designs, gather feedback, improve usability, and refine interactions to ensure an intuitive and seamless user experience.",
+      },
+      {
+        title: "Developer Handoff",
+        desc: "Prepare design assets, specifications, and reusable components to ensure a smooth transition from design to development.",
+      },
+      {
+        title: "Continuous Design Support",
+        desc: "Support future enhancements, feature additions, and user experience improvements as your product evolves.",
+      },
+    ],
   },
 ];
 
@@ -393,24 +550,98 @@ export const stats = [
 export const testimonials = [
   {
     name: "Manuel Goren",
+    photo: "/images/testimonials/manuel-goren.webp",
     quote:
       "Great experience…. Adroit Infosol Team is very professional. They are dependable and worked relatively rapidly and was communicate throughout the process. Will use them again as needed. Thanks!",
   },
   {
     name: "Peter Oey",
+    photo: "/images/testimonials/peter-oey.webp",
     quote:
       "Adroit InfoSol Team was easy to communicate. Delivered the project on time. Was open to hear comments and responded to them quickly. Code review revealed a very tidy and readable code. I will definitely do more business with them again!",
   },
   {
     name: "Joe Fritz",
+    photo: "/images/testimonials/joe-fritz.webp",
     quote:
       "This is the third project I've done with Adroit InfoSol. I keep hiring Vishal because he keeps doing a good job. I always feel like he appreciates the work I bring him, no matter the size the contract. As before, I was very satisfied and more project together will be done…!!!",
   },
   {
     name: "Diana Jones",
+    photo: "/images/testimonials/diana-jones.webp",
     quote:
       "Absolutely Amazing Team. Went beyond the initial Job to make sure everything was done properly. They have delivered the app in schedule and without any errors. I never experienced this before from any vendor. Vishal suggested even improvements which increased user friendlyness. VERY good work. I will definitely work with them again.",
   },
+];
+
+// real client reviews, 2015-2019
+export const globalReviews = [
+  {
+    name: "Fikret",
+    role: "USA · iOS app update",
+    quote:
+      "The one thing I like about Adroit Infosol, they are always eager to implement a project as efficient and professional as possible with no hacky solution.",
+  },
+  {
+    name: "Marc",
+    role: "St Albans, UK · LimeSurvey export plugin",
+    quote:
+      "I will definitely be working with Kalpana again, thank you so much for the work undertaken with LimeSurvey. The additional module was exactly what we needed.",
+  },
+  {
+    name: "Tyler",
+    role: "Milton, USA · Geofencing app & AWS backend",
+    quote:
+      "Kalpana is a joy to work with and her teammates are top tier developers. They built out my project to our spec sheet with great communication skills. I highly recommend her!",
+  },
+  {
+    name: "Chen",
+    role: "USA · iOS vehicle speed analysis app",
+    quote:
+      "Vishal is very knowledgeable about what he is doing. They delivered a good project and sometimes went the extra mile for what I asked for. I would recommend working with Adroit Infosol.",
+  },
+  {
+    name: "Chet",
+    role: "USA · Android property management app",
+    quote: "Outstanding job. Will request Adroit Infosol for future work.",
+  },
+  {
+    name: "Ryan",
+    role: "Cypress, USA · Android group messaging app",
+    quote:
+      "Vishal and his team did an excellent job on this project as usual. He is a very skilled and reliable developer and I would definitely work with him in the future.",
+  },
+  {
+    name: "Andrew",
+    role: "USA · LimeSurvey, PHP & server admin",
+    quote: "I cannot express how happy we are with the work performed by team Adroit Infosol.",
+  },
+  {
+    name: "Sangy",
+    role: "USA · iOS/Android app with 360 camera",
+    quote:
+      "Vishal was cooperative during the contract and in including additional features to the iOS app. Would continue working with Adroit Infosol in the future.",
+  },
+];
+
+// most client work is under NDA, this is what's public
+// `image` = real project logo, pulled from adroitinfosol.com
+export const portfolio = [
+  { name: "Leakage Management System", platforms: ["Android", "iOS", "Web"], image: "/images/portfolio/leakage-management.webp" },
+  { name: "Trip Survey App", platforms: ["Android", "iOS", "Web"], image: "/images/portfolio/trip-survey-app.webp" },
+  { name: "Bluetooth Leak Detector", platforms: ["Android", "iOS", "Web"], image: "/images/portfolio/bluetooth-leak-detector.webp" },
+  { name: "Appointment Management", platforms: ["Android", "iOS", "Web"], image: "/images/portfolio/appointment-management.webp" },
+  { name: "Monitor Civil Project", platforms: ["Android", "iOS", "IoT"], image: "/images/portfolio/monitor-civil-project.webp" },
+  { name: "Driving Style Analysis App", platforms: ["Android", "iOS", "Web"], image: "/images/portfolio/driving-style-analysis.webp" },
+  { name: "Offline LimeSurvey App", platforms: ["Web", "LimeSurvey"], image: "/images/portfolio/offline-limesurvey-app.webp" },
+  { name: "Property Maintenance", platforms: ["Android"], image: "/images/portfolio/property-maintenance.webp" },
+  { name: "Security Alarm", platforms: ["iOS"], image: "/images/portfolio/security-alarm.webp" },
+  { name: "Simba", platforms: ["Web", "Android"], image: "/images/portfolio/simba.webp" },
+  { name: "Civil Project Expenses", platforms: ["Hybrid"], image: "/images/portfolio/civil-project-expenses.webp" },
+  { name: "HatchTank", platforms: ["Hybrid"], image: "/images/portfolio/hatchtank.webp" },
+  { name: "Farm Management", platforms: ["Android", "Hybrid"], image: "/images/portfolio/farm-management.webp" },
+  { name: "LimeSurvey - Map Question", platforms: ["Web", "LimeSurvey"], image: "/images/portfolio/limesurvey-map-question.webp" },
+  { name: "LimeSurvey - SQL Export", platforms: ["Web", "LimeSurvey"], image: "/images/portfolio/limesurvey-sql-export.webp" },
 ];
 
 export const processSteps = [
@@ -440,11 +671,7 @@ export const processSteps = [
   },
 ];
 
-// `slug` maps to a Simple Icons (cdn.simpleicons.org) brand mark, rendered
-// as a CSS mask so it inherits our theme colors instead of each brand's own
-// fixed color (avoids e.g. Apple's mark disappearing on a dark background).
-// `slug: null` = no official mark on Simple Icons, falls back to a plain
-// text pill.
+// `slug` = Simple Icons mark, recolored via CSS mask; `null` = plain text pill
 export const techStack: { name: string; slug: string | null }[] = [
   { name: "Android", slug: "android" },
   { name: "iOS", slug: "apple" },
@@ -458,6 +685,58 @@ export const techStack: { name: string; slug: string | null }[] = [
   { name: "Docker", slug: "docker" },
   { name: "LimeSurvey", slug: "limesurvey" },
   { name: "Wappler", slug: null },
+];
+
+// icon slugs for service-page tech chips, unmapped names fall back to a code glyph
+export const techIconSlugs: Record<string, string> = {
+  Kotlin: "kotlin",
+  Java: "openjdk",
+  Swift: "swift",
+  SwiftUI: "swift",
+  Flutter: "flutter",
+  "React Native": "react",
+  React: "react",
+  Dart: "dart",
+  TypeScript: "typescript",
+  Firebase: "firebase",
+  "Node.js": "nodedotjs",
+  PostgreSQL: "postgresql",
+  MySQL: "mysql",
+  Docker: "docker",
+  Terraform: "terraform",
+  "GitHub Actions": "githubactions",
+  Nginx: "nginx",
+  Grafana: "grafana",
+  Figma: "figma",
+  LimeSurvey: "limesurvey",
+  PHP: "php",
+  Fastlane: "fastlane",
+  MQTT: "mqtt",
+  InfluxDB: "influxdb",
+};
+
+// Home page differentiators, separate from `values` (About page)
+export const homeDifferentiators = [
+  {
+    title: "NDA-First Confidentiality",
+    desc: "We sign your NDA, or provide our own, before discussing any project details. Confidentiality is standard on every engagement.",
+    icon: "shield",
+  },
+  {
+    title: "Flexible Engagement Models",
+    desc: "Fixed-price for well-defined scopes, a dedicated team for ongoing product work, or milestone billing for evolving projects.",
+    icon: "briefcase",
+  },
+  {
+    title: "Post-Launch Support Included",
+    desc: "Every project ships with a stabilization window, plus ongoing maintenance and enhancement plans if you want continued support.",
+    icon: "checkCircle",
+  },
+  {
+    title: "Built for Global Time Zones",
+    desc: "Clients across multiple continents since 2013 - overlapping hours, async updates, and recorded demos keep progress visible either way.",
+    icon: "globe",
+  },
 ];
 
 export const values = [
@@ -551,6 +830,7 @@ export const employeeReviews = [
     name: "Zalak S",
     role: "Web Developer",
     tenure: "5+ Years",
+    photo: "/images/employee-review/zalak-s.svg",
     quote:
       "Great place to work, learn, and build practical skills. The team is supportive, communication is smooth, and I always get opportunities to improve with real projects.",
   },
@@ -558,6 +838,7 @@ export const employeeReviews = [
     name: "Rahul S",
     role: "Web Developer",
     tenure: "3+ Years",
+    photo: "/images/employee-review/rahul-s.svg",
     quote:
       "I enjoy the work culture here because collaboration is strong and everyone is ready to help. We focus on quality delivery and keep learning with every project.",
   },
@@ -565,6 +846,7 @@ export const employeeReviews = [
     name: "Vaibhav J",
     role: "Web Developer",
     tenure: "4+ Years",
+    photo: "/images/employee-review/vaibhav-j.svg",
     quote:
       "Adroit Infosol gives a balanced environment to grow professionally. Leadership is approachable, timelines are clear, and the team environment stays positive.",
   },
@@ -572,6 +854,7 @@ export const employeeReviews = [
     name: "Vishal P",
     role: "iOS & Flutter Developer",
     tenure: "7+ Years",
+    photo: "/images/employee-review/vishal-p.svg",
     quote:
       "The work process is structured and transparent, which helps us stay productive. I appreciate the trust, flexibility, and focus on delivering high-quality solutions.",
   },
@@ -640,5 +923,6 @@ export const navLinks = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about-us" },
   { label: "Services", to: "/services" },
+  { label: "Portfolio", to: "/portfolio" },
   { label: "Work Culture", to: "/work-culture" },
 ];

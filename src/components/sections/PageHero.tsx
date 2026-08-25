@@ -11,13 +11,11 @@ interface PageHeroProps {
   children?: ReactNode;
 }
 
-/** Hero used on interior pages. Optionally split with a page-specific visual
- * (photo, stat panel, or icon cluster) so every page reads as its own
- * moment instead of a repeated text-only template. */
+/** Hero used on interior pages, optionally split with a page-specific visual. */
 export function PageHero({ eyebrow, title, description, visual, children }: PageHeroProps) {
   return (
     <section className={styles.hero}>
-      <GradientBlob variant="sky" className={`blob-decor ${styles.blobA}`} />
+      <GradientBlob variant="indigo" className={`blob-decor ${styles.blobA}`} />
       <GradientBlob variant="green" className={`blob-decor ${styles.blobB}`} />
       <div className={`container-custom ${styles.inner} ${visual ? styles.split : ""}`}>
         <div className={styles.copy}>

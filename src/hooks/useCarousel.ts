@@ -4,8 +4,8 @@ const RESUME_DELAY = 4000;
 
 /**
  * Scroll-snap carousel controller: index state, autoplay (paused on
- * hover/focus/touch and by an explicit persistent toggle per WCAG 2.2.2),
- * and drag/swipe-to-index sync. UI-agnostic - components own the markup.
+ * hover/focus/touch), and drag/swipe-to-index sync. UI-agnostic - the
+ * component owns the markup.
  */
 export function useCarousel(itemCount: number, autoPlayMs = 3200) {
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -25,9 +25,7 @@ export function useCarousel(itemCount: number, autoPlayMs = 3200) {
       if (!slide) return;
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       isProgrammaticScroll.current = true;
-      // Scroll the track's own horizontal axis directly instead of
-      // slide.scrollIntoView(), which can also nudge the page's vertical
-      // scroll position when the carousel isn't fully inside the viewport.
+      // scroll the track directly, avoids scrollIntoView nudging page scroll
       const scrollPaddingLeft = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
       const delta = slide.getBoundingClientRect().left - track.getBoundingClientRect().left - scrollPaddingLeft;
       track.scrollTo({ left: track.scrollLeft + delta, behavior: reduceMotion ? "auto" : "smooth" });
@@ -80,8 +78,7 @@ export function useCarousel(itemCount: number, autoPlayMs = 3200) {
     return () => clearInterval(id);
   }, [index, isPlaying, autoPlayMs, goTo]);
 
-  // Keep the index in sync when the user drags/swipes the track directly
-  // instead of using the arrow buttons.
+  // sync index when the user swipes the track instead of using arrows
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;

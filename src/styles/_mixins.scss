@@ -76,9 +76,7 @@
   }
 }
 
-// Icon/avatar "pop" on the parent card's hover — small, spring-like, purposeful
-// feedback that the card itself is interactive (Jakub: production polish;
-// Jhey: a touch of delight). Kept under 300ms and off under reduced-motion.
+// Small spring-like pop on hover for a card's icon/avatar.
 @mixin icon-pop {
   transition: transform 0.28s $ease-out, background-color $dur-base $ease-out,
     color $dur-base $ease-out;

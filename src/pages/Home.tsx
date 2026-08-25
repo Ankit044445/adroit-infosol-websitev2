@@ -1,14 +1,14 @@
 import { Seo } from "../components/ui/Seo";
 import { Button } from "../components/ui/Button";
-import { PhotoFrame } from "../components/ui/PhotoFrame";
 import { HomeHero } from "../components/sections/HomeHero";
 import { StatsStrip } from "../components/sections/StatsStrip";
+import { WhoWeAre } from "../components/sections/WhoWeAre";
 import { ServiceCard } from "../components/sections/ServiceCard";
-import { TestimonialCard } from "../components/sections/TestimonialCard";
+import { ReviewsCarousel } from "../components/sections/ReviewsCarousel";
 import { CtaBanner } from "../components/sections/CtaBanner";
 import { TechMarquee } from "../components/sections/TechMarquee";
 import { WhyChooseUs } from "../components/sections/WhyChooseUs";
-import { services, testimonials } from "../data/content";
+import { services, globalReviews } from "../data/content";
 
 export function Home() {
   return (
@@ -27,57 +27,38 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section section-alt">
-        <div className="container-custom">
-          <div className="row align-items-center g-4 g-lg-5">
-            <div className="col-lg-6">
-              <PhotoFrame
-                src="/images/office2.webp"
-                alt="Adroit Infosol team members collaborating in the office"
-                ratio="landscape"
-              />
-            </div>
-            <div className="col-lg-6">
-              <h2>
-                Building technology that moves <span className="text-gradient">businesses forward</span>
-              </h2>
-              <p className="lead">
-                Established in 2013, we've been helping startups, SMEs, and enterprises transform their ideas
-                into reliable, scalable digital solutions that solve real business challenges, backed by a
-                team of 20+ skilled professionals.
-              </p>
-              <Button to="/about-us" variant="secondary">
-                Learn About Us
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <WhoWeAre />
 
       <section className="section">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <span className="eyebrow">Our Expertise</span>
-            <h2>Technology solutions that help you grow</h2>
+            <h2>Scalable Solutions Built to <span className="text-gradient">Power Your Growth</span></h2>
             <p className="lead">
-              From enterprise software to AI-assisted development, we design solutions that streamline
-              operations, automate workflows, and open new opportunities for your business.
+              From enterprise software to modern mobile apps, we design scalable digital solutions that streamline operations and accelerate business growth.
             </p>
           </div>
           <div className="row g-4">
-            {services.map((s, i) => (
+            {services.slice(0, 6).map((s, i) => (
               <div className="col-md-6 col-lg-4" key={s.slug}>
                 <ServiceCard service={s} index={i} delay={((i % 6) + 1) as 1} />
               </div>
             ))}
           </div>
+          <div className="text-center mt-5">
+            <Button to="/services" variant="secondary">
+              View All Services
+            </Button>
+          </div>
         </div>
       </section>
 
       <section className="section section-alt">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <h2>Why businesses choose Adroit Infosol</h2>
+            <h2>Why Businesses Choose Adroit Infosol</h2>
+            <p className="lead">
+              Proven engineering practices, transparent communication, and an uncompromising commitment to long-term software quality.
+            </p>
           </div>
           <WhyChooseUs />
         </div>
@@ -85,8 +66,11 @@ export function Home() {
 
       <section className="section">
         <div className="container-custom">
-          <div className="text-center mb-5">
-            <h2>Tools &amp; platforms we build with</h2>
+          <div className="section-head section-head--center">
+            <h2>Tools &amp; Platforms We Build With</h2>
+            <p className="lead">
+              Battle-tested programming languages, modern frameworks, and robust cloud infrastructure tailored to each project's performance and security requirements.
+            </p>
           </div>
           <TechMarquee />
         </div>
@@ -94,17 +78,15 @@ export function Home() {
 
       <section className="section section-alt">
         <div className="container-custom">
-          <div className="section-head section-head--center">
-            <span className="eyebrow">Client Feedback</span>
-            <h2>Real teams, real results, in their own words</h2>
-          </div>
-          <div className="row g-4">
-            {testimonials.map((t, i) => (
-              <div className="col-md-6" key={t.name}>
-                <TestimonialCard name={t.name} quote={t.quote} delay={((i % 4) + 1) as 1} />
-              </div>
-            ))}
-          </div>
+          <ReviewsCarousel
+            eyebrow="A Track Record That Spans Continents"
+            title={
+              <>
+                13+ Years of Client Feedback, <span className="text-gradient">From Every Time Zone</span>
+              </>
+            }
+            items={globalReviews}
+          />
         </div>
       </section>
 

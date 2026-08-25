@@ -51,10 +51,7 @@
   transition: transform $dur-fast $ease-out, background-color $dur-fast $ease-out;
 
   svg {
-    // The Play triangle's own glyph is visually left-heavy inside its
-    // square viewBox - a hair of relative offset optically centers it
-    // within the round button (unlike padding, this doesn't skew the
-    // button's own centering within the thumbnail).
+    // optical nudge, the play triangle looks off-center otherwise
     position: relative;
     left: 1px;
   }

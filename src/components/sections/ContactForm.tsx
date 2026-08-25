@@ -7,7 +7,7 @@ interface FormState {
   name: string;
   email: string;
   interest: string;
-  budget: string;
+  timeline: string;
   message: string;
 }
 
@@ -18,9 +18,10 @@ const interests = [
   "LimeSurvey Customization",
   "IoT Solution",
   "UI/UX Design",
+  "Other",
 ];
 
-const initialState: FormState = { name: "", email: "", interest: "", budget: "", message: "" };
+const initialState: FormState = { name: "", email: "", interest: "", timeline: "", message: "" };
 
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
@@ -53,7 +54,7 @@ export function ContactForm() {
 
     const subject = encodeURIComponent(`Project inquiry from ${form.name}${form.interest ? ` [${form.interest}]` : ""}`);
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nProject Interest: ${form.interest || "General"}\nBudget: ${form.budget || "Not specified"}\n\n${form.message}`
+      `Name: ${form.name}\nEmail: ${form.email}\nProject Interest: ${form.interest || "General"}\nTimeline: ${form.timeline || "Not specified"}\n\n${form.message}`
     );
     window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
     setSent(true);
@@ -103,13 +104,13 @@ export function ContactForm() {
       </div>
 
       <label className={styles.field}>
-        <span>Estimated Budget</span>
-        <select value={form.budget} onChange={(e) => update("budget", e.target.value)}>
-          <option value="">Select a range (optional)</option>
-          <option value="Under $5,000">Under $5,000</option>
-          <option value="$5,000 - $15,000">$5,000 - $15,000</option>
-          <option value="$15,000 - $50,000">$15,000 - $50,000</option>
-          <option value="$50,000+">$50,000+</option>
+        <span>Preferred Timeline</span>
+        <select value={form.timeline} onChange={(e) => update("timeline", e.target.value)}>
+          <option value="">When would you like to start? (optional)</option>
+          <option value="As soon as possible">As soon as possible</option>
+          <option value="Within 1 month">Within 1 month</option>
+          <option value="1-3 months">1-3 months</option>
+          <option value="Just exploring">Just exploring</option>
         </select>
       </label>
 

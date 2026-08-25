@@ -33,6 +33,7 @@ export function IntroVideo() {
         </span>
       </button>
 
+      {/* portal to body so the modal isn't clipped by an ancestor's transform */}
       {open &&
         createPortal(
           <div className={styles.overlay} onClick={() => setOpen(false)}>

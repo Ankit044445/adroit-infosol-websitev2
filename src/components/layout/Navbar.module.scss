@@ -14,7 +14,8 @@
   background: transparent;
   transition: background-color $dur-base $ease-out, box-shadow $dur-base $ease-out,
     border-color $dur-base $ease-out;
-  border-bottom: 1px solid transparent;
+  // faint border always on, not just after scroll
+  border-bottom: 1px solid var(--border);
 
   &.scrolled {
     background: var(--header-bg);
@@ -50,7 +51,7 @@
 .desktopNav {
   display: none;
   align-items: center;
-  gap: $space-6;
+  gap: clamp(1.75rem, 2.4vw, 2.5rem);
 
   @include respond(lg) {
     display: flex;
@@ -107,8 +108,7 @@
 .navItem {
   position: relative;
 
-  // Invisible bridge over the visual gap between the trigger and the
-  // floating panel below it.
+  // invisible hover bridge to the dropdown panel below
   &::after {
     content: "";
     position: absolute;
@@ -268,6 +268,7 @@
 
 .ctaDesktop {
   display: none;
+
   @include respond(lg) {
     display: block;
   }
@@ -291,11 +292,11 @@
 }
 
 .mobileNav {
-  max-height: 0;
-  overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
   background: var(--surface);
   border-bottom: 1px solid transparent;
-  transition: max-height $dur-slow $ease-out, border-color $dur-base;
+  transition: grid-template-rows $dur-slow $ease-out, border-color $dur-base;
 
   @include respond(lg) {
     display: none;
@@ -303,16 +304,14 @@
 }
 
 .mobileNavOpen {
-  // Generous enough to fit the nav list AND the services submenu expanded
-  // at once, plus the CTA - a mobile viewport will scroll internally if the
-  // real content is ever taller than this, so err high, not tight.
-  max-height: 64rem;
   border-bottom-color: var(--border);
-  overflow-y: auto;
+  grid-template-rows: 1fr;
 }
 
 .mobileNavInner {
   min-height: 0;
+  overflow-y: auto;
+  max-height: 85vh;
 }
 
 .mobileNavList {
@@ -327,8 +326,8 @@
   justify-content: space-between;
   width: 100%;
   padding-block: $space-3;
+  border: none;
   border-bottom: 1px solid var(--border);
-  border-top: none;
   background: none;
   text-align: left;
   cursor: pointer;
@@ -352,17 +351,18 @@
 }
 
 .mobileSub {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height $dur-slow $ease-out;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows $dur-slow $ease-out;
 }
 
 .mobileSubOpen {
-  max-height: 28rem;
+  grid-template-rows: 1fr;
 }
 
 .mobileSubInner {
   min-height: 0;
+  overflow: hidden;
 }
 
 .mobileSubLink {
@@ -391,11 +391,7 @@
 }
 
 .mobileCta {
-  // Overrides .btn-block's width: 100% - that resolves against this
-  // element's own containing block, so pairing it with horizontal margin
-  // (instead of the parent's padding, like .mobileNavList uses) pushed the
-  // button 20px past the viewport edge on the right. Size it to the
-  // margin explicitly instead of fighting the cascade.
+  // account for the side margins so it doesn't overflow the viewport
   width: calc(100% - #{clamp(1.25rem, 4vw, 2.5rem)} * 2) !important;
   margin: $space-5 clamp(1.25rem, 4vw, 2.5rem) $space-6;
 }

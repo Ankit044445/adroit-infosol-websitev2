@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Seo } from "../components/ui/Seo";
 import { Reveal } from "../components/ui/Reveal";
@@ -7,8 +8,28 @@ import { Icon, type IconName } from "../assets/icons/Icon";
 import { ProcessSteps } from "../components/sections/ProcessSteps";
 import { ServiceCard } from "../components/sections/ServiceCard";
 import { CtaBanner } from "../components/sections/CtaBanner";
-import { services } from "../data/content";
+import { services, techIconSlugs } from "../data/content";
 import styles from "./ServiceDetail.module.scss";
+
+type MaskStyle = CSSProperties & { "--mark-src": string };
+
+function formatServiceTitle(title: string) {
+  const parts = title.split(" ");
+  if (parts.length <= 2) {
+    return (
+      <>
+        {parts[0]} <span className="text-gradient">{parts.slice(1).join(" ")}</span>
+      </>
+    );
+  }
+  const splitIndex = parts.length > 3 ? 2 : 1;
+  return (
+    <>
+      {parts.slice(0, splitIndex).join(" ")}{" "}
+      <span className="text-gradient">{parts.slice(splitIndex).join(" ")}</span>
+    </>
+  );
+}
 
 export function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -29,7 +50,7 @@ export function ServiceDetail() {
       />
 
       <section className={styles.hero}>
-        <GradientBlob variant="sky" className={`blob-decor ${styles.blobA}`} />
+        <GradientBlob variant="indigo" className={`blob-decor ${styles.blobA}`} />
         <GradientBlob variant="green" className={`blob-decor ${styles.blobB}`} />
         <div className={`container-custom ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
@@ -39,12 +60,8 @@ export function ServiceDetail() {
               <span>{service.title}</span>
             </nav>
 
-            <div className={styles.heroIcon}>
-              <Icon name={service.icon as IconName} size={30} />
-            </div>
-
-            <h1 className={styles.title}>{service.title}</h1>
-            <p className={`lead ${styles.desc}`}>{service.short}</p>
+            <h1 className={styles.title}>{formatServiceTitle(service.title)}</h1>
+            <p className={`lead ${styles.desc}`}>{service.tagline}</p>
 
             <div className={styles.ctaRow}>
               <Button to="/contact-us" size="lg">
@@ -56,15 +73,8 @@ export function ServiceDetail() {
             </div>
           </div>
 
-          <Reveal delay={2} className={styles.statCard}>
-            <span className={styles.statValue}>{service.stat.value}</span>
-            <span className={styles.statLabel}>{service.stat.label}</span>
-            <div className={styles.statDivider} />
-            <ul className={styles.statTech}>
-              {service.technologies.slice(0, 4).map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
+          <Reveal delay={2} className={styles.heroIconFrame}>
+            <Icon name={service.icon as IconName} size={96} />
           </Reveal>
         </div>
       </section>
@@ -72,43 +82,40 @@ export function ServiceDetail() {
       <section className="section">
         <div className="container-custom">
           <div className="row g-4 g-lg-5">
-            <div className="col-lg-7">
-              <span className="subhead">Overview</span>
+            <div className="col-lg-8">
               <p className={styles.detailText}>{service.detail}</p>
 
-              <span className="subhead">Technologies We Use</span>
               <ul className={styles.techPills}>
-                {service.technologies.map((t) => (
-                  <li key={t}>
-                    <Icon name="code" size={14} />
-                    {t}
-                  </li>
-                ))}
+                {service.technologies.map((t) => {
+                  const slug = techIconSlugs[t];
+                  return (
+                    <li key={t}>
+                      {slug ? (
+                        <span
+                          className={styles.techMark}
+                          style={{ "--mark-src": `url(https://cdn.simpleicons.org/${slug})` } as MaskStyle}
+                        />
+                      ) : (
+                        <Icon name="code" size={14} />
+                      )}
+                      {t}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
-            <div className="col-lg-5">
-              <Reveal delay={2} className={styles.sideCard}>
-                <h3 className={styles.sideTitle}>What's Included</h3>
-                <ul className={styles.capabilityList}>
-                  {service.capabilities.map((c) => (
-                    <li key={c}>
-                      <Icon name="checkCircle" size={18} />
-                      <span>{c}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className={styles.sideDivider} />
-                <h3 className={styles.sideTitle}>Deliverables</h3>
-                <ol className={styles.deliverableList}>
-                  {service.deliverables.map((d, i) => (
-                    <li key={d}>
-                      <span>{String(i + 1).padStart(2, "0")}</span>
-                      {d}
-                    </li>
-                  ))}
-                </ol>
-              </Reveal>
+            <div className="col-lg-4">
+              <div className={styles.statCards}>
+                <Reveal delay={1} className={styles.statCard}>
+                  <strong>13+</strong>
+                  <span>Years Delivering</span>
+                </Reveal>
+                <Reveal delay={2} className={styles.statCard}>
+                  <strong>{service.expertise.length}+</strong>
+                  <span>Specializations</span>
+                </Reveal>
+              </div>
             </div>
           </div>
         </div>
@@ -134,11 +141,11 @@ export function ServiceDetail() {
       <section className="section">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <h2>Why Choose Adroit Infosol for {service.title}?</h2>
+            <h2>Why Choose Us for <span className="text-gradient">{service.title}</span></h2>
           </div>
           <div className="row g-4">
             {service.whyUs.map((w, i) => (
-              <div className="col-md-6 col-lg-4" key={w.title}>
+              <div className="col-md-6" key={w.title}>
                 <Reveal delay={((i % 6) + 1) as 1} className={styles.whyUsCard}>
                   <span className={styles.whyUsNum}>{String(i + 1).padStart(2, "0")}</span>
                   <h3>{w.title}</h3>
@@ -153,7 +160,10 @@ export function ServiceDetail() {
       <section className="section section-alt">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <h2>Our {service.title} Capabilities</h2>
+            <h2>Technical Capabilities &amp; Specializations</h2>
+            <p className="lead">
+              Specialized domain expertise and production-ready architectural patterns tailored for your requirements.
+            </p>
           </div>
           <ul className={styles.expertiseGrid}>
             {service.expertise.map((e) => (
@@ -169,22 +179,23 @@ export function ServiceDetail() {
       <section className="section">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <span className="eyebrow">How We Work</span>
-            <h2>Our process for {service.title}</h2>
+            <h2>Development Lifecycle &amp; Delivery</h2>
             <p className="lead">
               A structured approach that keeps your project transparent, on schedule, and aligned with your
-              business goals from the first call to launch.
+              business goals from the first sprint to launch.
             </p>
           </div>
-          <ProcessSteps />
+          <ProcessSteps steps={service.process} />
         </div>
       </section>
 
       <section className="section section-alt">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <span className="eyebrow">Explore More</span>
-            <h2>Other services you might need</h2>
+            <h2>Complementary <span className="text-gradient">Engineering Services</span></h2>
+            <p className="lead">
+              Complementary technical capabilities across mobile, web, cloud, and connected devices.
+            </p>
           </div>
           <div className="row g-4">
             {related.map((s, i) => (
@@ -197,8 +208,8 @@ export function ServiceDetail() {
       </section>
 
       <CtaBanner
-        title={`Ready to start your ${service.title} project?`}
-        description="Tell us about your goals and timeline. Our team will get back to you with a clear scope, technology recommendation, and next steps within one business day."
+        title={service.cta.title}
+        description={service.cta.description}
         ctaLabel={service.ctaLabel}
         ctaTo="/contact-us"
       />

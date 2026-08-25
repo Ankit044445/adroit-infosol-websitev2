@@ -12,12 +12,14 @@ interface Props {
 }
 
 export function ServiceCard({ service, index, delay, detailed = false }: Props) {
+  const topTechs = service.technologies?.slice(0, 3) || [];
+
   return (
     <Reveal delay={delay} className={styles.wrap}>
       <article id={service.slug} className={styles.card}>
         <div className={styles.cardTop}>
           <div className={styles.iconWrap}>
-            <Icon name={service.icon as IconName} size={26} />
+            <Icon name={service.icon as IconName} size={24} />
           </div>
           {typeof index === "number" && (
             <span className={styles.index} aria-hidden="true">
@@ -27,12 +29,17 @@ export function ServiceCard({ service, index, delay, detailed = false }: Props) 
         </div>
         <h3 className={styles.title}>{service.title}</h3>
         <p className={styles.desc}>{detailed ? service.detail : service.short}</p>
-        <div className={styles.statRow}>
-          <strong>{service.stat.value}</strong>
-          <span>{service.stat.label}</span>
-        </div>
+        {topTechs.length > 0 && (
+          <div className={styles.techTags} aria-label="Core technologies">
+            {topTechs.map((tech) => (
+              <span key={tech} className={styles.techTag}>
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
         <Link to={`/services/${service.slug}`} className={styles.link}>
-          Explore Service
+          <span>Explore Service</span>
           <Icon name="arrowRight" size={16} />
         </Link>
       </article>

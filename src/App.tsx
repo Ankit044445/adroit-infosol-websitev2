@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Services } from "./pages/Services";
 import { ServiceDetail } from "./pages/ServiceDetail";
+import { Portfolio } from "./pages/Portfolio";
 import { WorkCulture } from "./pages/WorkCulture";
 import { Contact } from "./pages/Contact";
 import { NotFound } from "./pages/NotFound";
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/about-us" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/work-culture" element={<WorkCulture />} />
           <Route path="/contact-us" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

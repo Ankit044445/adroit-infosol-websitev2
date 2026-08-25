@@ -1,11 +1,15 @@
 import { Reveal } from "../ui/Reveal";
-import { processSteps } from "../../data/content";
+import { processSteps as defaultSteps } from "../../data/content";
 import styles from "./ProcessSteps.module.scss";
 
-export function ProcessSteps() {
+interface Props {
+  steps?: { title: string; desc: string }[];
+}
+
+export function ProcessSteps({ steps = defaultSteps }: Props) {
   return (
     <ol className={styles.list}>
-      {processSteps.map((step, i) => (
+      {steps.map((step, i) => (
         <Reveal as="li" key={step.title} delay={((i % 6) + 1) as 1} className={styles.item}>
           <span className={styles.node} aria-hidden="true">
             {String(i + 1).padStart(2, "0")}

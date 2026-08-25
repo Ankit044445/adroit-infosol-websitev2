@@ -35,10 +35,7 @@
   }
 }
 
-// Slow ambient drift for background gradient blobs — decorative only, so it
-// stays under a 3% scale/translate budget and off entirely under
-// reduced-motion. Two blobs on one section use opposing delays so they never
-// move in lockstep.
+// slow ambient drift for background blobs, off under reduced-motion
 @keyframes blobDrift {
 
   0%,
@@ -55,8 +52,7 @@
   animation: blobDrift 22s $ease-out infinite;
 }
 
-// Every usage renders two blobs back-to-back; offset the second so the pair
-// doesn't breathe in sync.
+// offset the second blob so a pair doesn't breathe in sync
 .blob-decor+.blob-decor {
   animation-delay: -11s;
 }
@@ -67,10 +63,6 @@
   }
 }
 
-// Scroll-arrival treatment for visual elements only (photos, cards, stat
-// panels) - never for plain text, which should render instantly instead of
-// announcing its own entrance. No blur: it reads as heavy/laggy rather than
-// premium, and softens text mid-transition.
 .reveal {
   opacity: 0;
   transform: translateY(16px);

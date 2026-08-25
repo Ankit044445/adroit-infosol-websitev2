@@ -1,11 +1,6 @@
 import { useEffect, useRef } from "react";
 
-/**
- * Subtle pointer-follow tilt for a hero visual. Off on touch devices (no
- * hover capability) and under prefers-reduced-motion — this is pure
- * decoration, not information, so it has no business running where the
- * pointer paradigm or the user's motion preference says no.
- */
+// pointer tilt, skipped on touch and reduced-motion
 export function useTilt<T extends HTMLElement>(maxDeg = 6) {
   const ref = useRef<T | null>(null);
 

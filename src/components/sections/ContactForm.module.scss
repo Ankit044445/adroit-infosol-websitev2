@@ -58,10 +58,7 @@
     }
   }
 
-  // The native select arrow is the browser's own OS-chrome widget - it
-  // doesn't match any other control on the page (every input/button here is
-  // custom-styled). Replace it with a plain chevron drawn the same way the
-  // rest of the icon system works, so the dropdown looks like it belongs.
+  // custom chevron to match the rest of the icon set
   select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 256 256'%3E%3Cpath fill='%23746e82' d='M215.4 92.9L128 180.7L40.6 92.9a12 12 0 0 0-17 17l96 96a12 12 0 0 0 17 0l96-96a12 12 0 0 0-17-17Z'/%3E%3C/svg%3E");

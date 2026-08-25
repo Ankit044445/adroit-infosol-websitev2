@@ -105,13 +105,12 @@ export type IconName =
   | "chevronRight"
   | "image";
 
-type Props = SVGProps<SVGSVGElement> & { name: IconName; size?: number };
+type Props = SVGProps<SVGSVGElement> & {
+  name: IconName;
+  size?: number;
+  weight?: "regular" | "fill" | "bold" | "light" | "thin" | "duotone";
+};
 
-// Real, accurate Phosphor Icons brand/glyph marks - see /it-software-design
-// and taste-skill audit: hand-rolled SVG icon paths are a known anti-slop
-// tell, so the whole set was swapped to a maintained icon library instead
-// of drawing shapes by hand. The `name` API is unchanged, so every call
-// site (`<Icon name="..." />`) across the app needed zero edits.
 const registry: Record<IconName, PhosphorIcon> = {
   android: AndroidLogo,
   ios: AppleLogo,
@@ -165,7 +164,7 @@ const registry: Record<IconName, PhosphorIcon> = {
   image: ImageSquare,
 };
 
-export function Icon({ name, size = 24, ...rest }: Props) {
+export function Icon({ name, size = 24, weight = "regular", ...rest }: Props) {
   const Glyph = registry[name];
-  return <Glyph size={size} weight="regular" aria-hidden="true" focusable="false" {...rest} />;
+  return <Glyph size={size} weight={weight} aria-hidden="true" focusable="false" {...rest} />;
 }

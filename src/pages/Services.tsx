@@ -7,6 +7,7 @@ import { ProcessSteps } from "../components/sections/ProcessSteps";
 import { TechMarquee } from "../components/sections/TechMarquee";
 import { CtaBanner } from "../components/sections/CtaBanner";
 import { Faq } from "../components/sections/Faq";
+import { Icon } from "../assets/icons/Icon";
 import { services } from "../data/content";
 
 export function Services() {
@@ -37,7 +38,7 @@ export function Services() {
         <div className="container-custom">
           <div className="row g-4">
             {services.map((s, i) => (
-              <div className="col-md-6 col-lg-4" key={s.slug}>
+              <div className="col-md-6 col-xl-3" key={s.slug}>
                 <ServiceCard service={s} index={i} delay={((i % 6) + 1) as 1} />
               </div>
             ))}
@@ -47,11 +48,13 @@ export function Services() {
 
       <section className="section section-alt">
         <div className="container-custom">
-          <div className="text-center mb-5">
-            <h2>Great software starts with the right technology</h2>
-            <p className="lead mx-auto" style={{ maxWidth: "60ch" }}>
-              We leverage modern programming languages, frameworks, cloud platforms, and development tools to
-              build secure, scalable, and future-ready digital solutions tailored to your business goals.
+          <div className="section-head section-head--center">
+            <span className="eyebrow">
+              <Icon name="layers" size={14} /> Technology Ecosystem
+            </span>
+            <h2>Great Software Starts with the Right Technology</h2>
+            <p className="lead">
+              We leverage modern programming languages, frameworks, cloud platforms, and development tools to build secure, scalable, and future-ready digital solutions.
             </p>
           </div>
           <TechMarquee />
@@ -61,11 +64,9 @@ export function Services() {
       <section className="section">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <span className="eyebrow">Our Development Process</span>
-            <h2>A structured approach, from idea to launch</h2>
+            <h2>A Proven Framework, from <span className="text-gradient">Concept to Launch</span></h2>
             <p className="lead">
-              Every successful digital solution starts with a well-defined process. Our structured development
-              approach ensures transparency, quality, and collaboration at every stage.
+              Every successful digital solution starts with a well-defined process. Our structured development approach ensures transparency, quality, and collaboration at every stage.
             </p>
           </div>
           <ProcessSteps />
@@ -74,8 +75,11 @@ export function Services() {
 
       <section className="section section-alt">
         <div className="container-custom">
-          <div className="text-center mb-5">
-            <h2>Common questions before you get started</h2>
+          <div className="section-head section-head--center">
+            <h2>Frequently Asked <span className="text-gradient">Questions</span></h2>
+            <p className="lead">
+              Everything you need to know about our project engagement models, development timelines, and delivery methodology.
+            </p>
           </div>
           <Faq />
         </div>

@@ -4,7 +4,6 @@ import { Icon } from "../assets/icons/Icon";
 import { GradientBlob } from "../components/ui/GradientBlob";
 import { ContactForm } from "../components/sections/ContactForm";
 import { IntroVideo } from "../components/sections/IntroVideo";
-import { StatsStrip } from "../components/sections/StatsStrip";
 import { CopyEmailButton } from "../components/ui/CopyEmailButton";
 import { consultationSteps, consultationGains, contactInfo } from "../data/content";
 import styles from "./Contact.module.scss";
@@ -25,7 +24,9 @@ export function Contact() {
         <GradientBlob variant="green" className={`blob-decor ${styles.blobB}`} />
         <div className={`container-custom ${styles.grid}`}>
           <div className={styles.copy}>
-            <span className="eyebrow">Free Consultation</span>
+            <span className="eyebrow">
+              <Icon name="calendar" size={14} /> 30-Min Strategy Session
+            </span>
             <h1>
               Let's Build Something <span className="text-gradient">Great Together</span>
             </h1>
@@ -47,7 +48,7 @@ export function Contact() {
           <Reveal delay={2} className={styles.videoCol}>
             <IntroVideo />
             <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className={`btn btn-secondary ${styles.calendlyLink}`}>
-              <span>Or book a slot on Calendly</span>
+              <span>Book Appointment on Calendly</span>
               <Icon name="arrowRight" size={16} />
             </a>
           </Reveal>
@@ -59,8 +60,7 @@ export function Contact() {
           <div className={`row g-4 g-lg-5 ${styles.formRow}`}>
             <div className="col-lg-5">
               <Reveal className={styles.gains}>
-                <span className="eyebrow">Why book a call</span>
-                <h2 className={styles.gainsHeading}>What you'll gain from the consultation</h2>
+                <h2 className={styles.gainsHeading}>What You'll Gain from Our <span className="text-gradient">Discovery Session</span></h2>
                 <ul className={styles.gainsList}>
                   {consultationGains.map((g) => (
                     <li key={g.title}>
@@ -130,12 +130,6 @@ export function Contact() {
               </Reveal>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container-custom">
-          <StatsStrip />
         </div>
       </section>
     </>

@@ -30,9 +30,9 @@ export function WorkCulture() {
         description="At Adroit Infosol, we believe a great workplace is built on collaboration, continuous learning, mutual respect, and celebrating success together. From delivering innovative software to celebrating milestones and festivals, we strive to create an environment where people enjoy working and growing together."
         visual={
           <PhotoFrame
-            src="/images/office3.webp"
-            alt="Adroit Infosol team members collaborating and laughing together"
-            ratio="square"
+            src="/images/wc-festival-celebrations.webp"
+            alt="Adroit Infosol team celebrating project delivery and workplace milestones in Vadodara"
+            ratio="landscape"
           />
         }
       >
@@ -64,10 +64,9 @@ export function WorkCulture() {
                 caption: "Engineering & testing environment",
               },
               {
-                // Temporary stock photo until a real celebration photo is provided.
-                src: "/images/stock-celebration.webp",
-                alt: "Team celebrating a project milestone",
-                caption: "Team collaboration & milestones",
+                src: "/images/wc-office-outing.webp",
+                alt: "Adroit Infosol team collaborating and celebrating together",
+                caption: "Team collaboration & innovation",
               },
             ]}
           />
@@ -77,8 +76,10 @@ export function WorkCulture() {
       <section className="section section-alt">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <span className="eyebrow">Why You'll Love Working Here</span>
-            <h2>Perks that support how you work best</h2>
+            <h2>People-First Benefits Built for <span className="text-gradient">Long-Term Growth</span></h2>
+            <p className="lead">
+              We invest in our people with supportive benefits, continuous learning opportunities, and a healthy work-life balance.
+            </p>
           </div>
           <div className="row g-4">
             {perks.map((p, i) => (
@@ -105,6 +106,7 @@ export function WorkCulture() {
               name: r.name,
               role: `${r.role} · ${r.tenure}`,
               quote: r.quote,
+              photo: r.photo,
             }))}
           />
         </div>

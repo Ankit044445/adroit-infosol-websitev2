@@ -8,82 +8,93 @@
 .card {
   @include card-surface;
   @include card-hover;
+  position: relative;
   height: 100%;
-  padding: $space-6;
+  padding: clamp(1.4rem, 2.2vw, 1.75rem);
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .cardTop {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: $space-5;
+  margin-bottom: $space-4;
 }
 
 .iconWrap {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: $radius-md;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: var(--brand-soft);
   color: var(--brand-strong);
+  border: 1px solid rgba(84, 125, 52, 0.12);
   @include icon-pop;
 }
 
 .card:hover .iconWrap {
-  transform: scale(1.08) rotate(-4deg);
+  transform: scale(1.06) rotate(-3deg);
   background: var(--brand-solid);
   color: var(--text-on-brand);
+  border-color: transparent;
 }
 
 .index {
   font-family: $font-heading;
   font-weight: 800;
-  font-size: 1.5rem;
-  color: var(--brand);
-  opacity: 0.3;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  opacity: 0.35;
+  letter-spacing: -0.02em;
   line-height: 1;
-
-  @supports (-webkit-text-stroke: 1px black) {
-    -webkit-text-stroke: 1.25px var(--brand);
-    color: transparent;
-    opacity: 1;
-  }
 }
 
 .title {
-  font-size: $fs-h4;
-  margin-bottom: $space-3;
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: $space-2;
+  transition: color $dur-fast $ease-out;
+}
+
+.card:hover .title {
+  color: var(--brand-strong);
 }
 
 .desc {
   flex: 1;
   font-size: $fs-body-sm;
-  margin-bottom: $space-5;
+  line-height: 1.58;
+  color: var(--text-muted);
+  margin-bottom: $space-3;
 }
 
-.statRow {
+.techTags {
   display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  padding-top: $space-4;
-  margin-bottom: $space-5;
-  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: $space-4;
+}
 
-  strong {
-    font-family: $font-heading;
-    font-weight: 800;
-    font-size: 1.05rem;
-    color: var(--heading);
-  }
+.techTag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.18rem 0.55rem;
+  border-radius: $radius-pill;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  transition: border-color $dur-fast $ease-out, color $dur-fast $ease-out;
+}
 
-  span {
-    font-size: $fs-caption;
-    color: var(--text-muted);
-  }
+.card:hover .techTag {
+  border-color: var(--border-strong);
+  color: var(--text);
 }
 
 .link {
@@ -95,12 +106,22 @@
   font-size: $fs-body-sm;
   color: var(--brand-strong);
   margin-top: auto;
+  padding-top: $space-1;
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: $radius-lg;
+  }
 
   svg {
     transition: transform $dur-fast $ease-out;
   }
+}
 
-  &:hover svg {
-    transform: translateX(4px);
-  }
+.card:hover .link svg {
+  transform: translateX(4px);
 }

@@ -4,9 +4,14 @@
   position: relative;
   overflow: hidden;
   border-radius: $radius-xl;
-  background: linear-gradient(135deg, $indigo-800, $indigo-700 55%, $green-700);
+  background: linear-gradient(120deg, $indigo-600 0%, $indigo-500 72%, $green-600 100%);
   padding: clamp(2.5rem, 6vw, 4.5rem);
   text-align: center;
+  box-shadow: 0 28px 60px -24px rgba(28, 37, 104, 0.4), 0 10px 26px -12px rgba(84, 125, 52, 0.18);
+}
+
+[data-theme="dark"] .panel {
+  background: linear-gradient(120deg, $indigo-600 0%, $indigo-500 72%, $green-700 100%);
 }
 
 .blobA {

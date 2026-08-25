@@ -10,70 +10,184 @@
   @include card-hover;
   height: 100%;
   margin: 0;
-  padding: $space-6;
+  padding: clamp(1.4rem, 2.4vw, 1.85rem);
   display: flex;
   flex-direction: column;
 }
 
-.quoteIcon {
-  color: var(--accent);
-  opacity: 0.5;
-  margin-bottom: $space-3;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  margin-bottom: $space-4;
+}
+
+// Icon housing matching ServiceCard and FeatureCard
+.quoteHousing {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-md;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+  border: 1px solid rgba(84, 125, 52, 0.14);
+  flex-shrink: 0;
   @include icon-pop;
 }
 
-.card:hover .quoteIcon {
-  opacity: 1;
-  transform: scale(1.08) rotate(-4deg);
+.card:hover .quoteHousing {
+  transform: scale(1.08) rotate(-3deg);
+  background: var(--brand-solid);
+  color: var(--text-on-brand);
+  border-color: transparent;
+}
+
+.badgeArea {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.ratingGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  color: #f59e0b;
+}
+
+.starIcon {
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+.verifiedTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--brand-strong);
+  background: var(--brand-soft);
+  padding: 0.2rem 0.55rem;
+  border-radius: $radius-pill;
+  border: 1px solid rgba(84, 125, 52, 0.16);
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+[data-theme="dark"] .verifiedTag {
+  color: #93c968;
+  background: rgba(123, 179, 73, 0.14);
+  border-color: rgba(147, 201, 104, 0.25);
+}
+
+.teamTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--indigo);
+  background: var(--indigo-soft);
+  padding: 0.22rem 0.65rem;
+  border-radius: $radius-pill;
+  border: 1px solid rgba(43, 61, 151, 0.14);
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+[data-theme="dark"] .teamTag {
+  color: var(--accent);
+  background: rgba(87, 190, 233, 0.14);
+  border-color: rgba(87, 190, 233, 0.25);
 }
 
 blockquote {
   margin: 0 0 $space-5;
   flex: 1;
 
-  p {
+  .quoteText {
     color: var(--text);
-    font-size: $fs-body;
-    line-height: $lh-snug;
+    font-size: 0.9625rem;
+    line-height: 1.68;
     margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-style: normal;
   }
 }
 
 .caption {
   display: flex;
   align-items: center;
-  gap: $space-3;
+  gap: 0.85rem;
+  padding-top: $space-4;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
 }
 
 .avatar {
   width: 42px;
   height: 42px;
   border-radius: $radius-pill;
-  background: var(--indigo);
+  background: linear-gradient(135deg, $indigo-700 0%, $indigo-900 100%);
   color: #fff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: $font-heading;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(43, 61, 151, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .avatar {
+  background: linear-gradient(135deg, $indigo-500 0%, #1e295f 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.avatarPhoto {
+  width: 42px;
+  height: 42px;
+  border-radius: $radius-pill;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 2px 8px rgba(43, 61, 151, 0.14);
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
 .name {
-  display: block;
   font-family: $font-heading;
   font-weight: 700;
-  font-size: $fs-body-sm;
+  font-size: 0.9375rem;
   color: var(--heading);
+  line-height: 1.25;
 }
 
 .role {
-  display: block;
-  font-size: $fs-caption;
+  font-size: 0.8125rem;
   color: var(--text-muted);
+  line-height: 1.2;
 }

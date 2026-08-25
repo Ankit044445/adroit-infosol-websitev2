@@ -1,7 +1,4 @@
-// Bootstrap is used ONLY for its grid engine + responsive utilities
-// (container/row/col, breakpoints, spacing/display utilities) so layout
-// and responsiveness are battle-tested — never its default component
-// skins, which is what makes Bootstrap sites look generic.
+// only using the grid/utilities, not default component skins
 @use "variables" as vars;
 
 $primary: vars.$green-600;

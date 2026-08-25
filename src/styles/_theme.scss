@@ -1,12 +1,11 @@
 @use "variables" as *;
 
-// CSS custom properties so the theme can flip at runtime via [data-theme].
 :root {
-  --bg: #{$white};
-  --bg-alt: #{$stone-50};
+  --bg: #{$stone-50};
+  --bg-alt: #e2e8e3;
   --surface: #{$white};
   --surface-raised: #{$white};
-  --border: #{$stone-200};
+  --border: #d0cdd7;
   --border-strong: #{$stone-300};
   --text: #{$stone-900};
   --text-muted: #{$stone-600};
@@ -15,12 +14,10 @@
   --brand: #{$green-600};
   --brand-strong: #{$green-700};
   --brand-soft: #{$green-100};
-  // Dedicated solid-fill pair for white-text-on-green surfaces (buttons, badges).
-  // Fixed at green-700/800 in both themes so it always clears WCAG AA 4.5:1 -
-  // --brand/--brand-strong are tuned for icon tints and links, not text contrast.
   --brand-solid: #{$green-700};
   --brand-solid-hover: #{$green-800};
   --accent: #{$sky-500};
+  --accent-strong: #{$sky-600};
   --accent-soft: #{$sky-100};
   --indigo: #{$indigo-700};
   --indigo-soft: #eef0fb;
@@ -50,6 +47,7 @@
   --brand-solid: #{$green-700};
   --brand-solid-hover: #{$green-800};
   --accent: #{$sky-400};
+  --accent-strong: #{$sky-400};
   --accent-soft: rgba(87, 190, 233, 0.14);
   --indigo: #{$sky-400};
   --indigo-soft: rgba(87, 190, 233, 0.12);

@@ -39,10 +39,7 @@ export function Button({
   className = "",
 }: ButtonProps) {
   const cls = `btn ${variantClass[variant]} ${size === "lg" ? "btn-lg" : ""} ${className}`.trim();
-  // The icon must stay a direct child of .btn (a flex container), not
-  // nested inside the text <span> - the global `svg { display: block }`
-  // reset makes a nested icon stack onto its own line instead of sitting
-  // inline beside the text.
+  // icon stays a direct child of .btn, not nested in the text span
   const arrow = icon && (
     <Icon name="arrowRight" size={18} style={iconPosition === "start" ? { transform: "rotate(180deg)" } : undefined} />
   );

@@ -18,28 +18,17 @@ interface Props {
 }
 
 export function PhotoCarousel({ eyebrow, title, description, items, autoPlayMs = 2800 }: Props) {
-  const { trackRef, index, prev, next, goToDot, toggleUserPaused, userPaused, reducedMotion, interactionHandlers } =
-    useCarousel(items.length, autoPlayMs);
+  const { trackRef, index, prev, next, goToDot, interactionHandlers } = useCarousel(items.length, autoPlayMs);
 
   return (
     <Reveal className={styles.wrap}>
       <div className={styles.head}>
-        <div>
+        <div className={styles.headCopy}>
           <span className="eyebrow">{eyebrow}</span>
-          <h2>{title}</h2>
-          {description && <p className="lead">{description}</p>}
+          <h2 className={styles.heading}>{title}</h2>
+          {description && <p className={`lead ${styles.lead}`}>{description}</p>}
         </div>
         <div className={styles.nav}>
-          {items.length > 1 && !reducedMotion && (
-            <button
-              type="button"
-              onClick={toggleUserPaused}
-              aria-label={userPaused ? "Play slideshow" : "Pause slideshow"}
-              aria-pressed={userPaused}
-            >
-              <Icon name={userPaused ? "play" : "pause"} size={18} />
-            </button>
-          )}
           <button type="button" onClick={prev} aria-label="Previous photo">
             <Icon name="chevronLeft" size={20} />
           </button>

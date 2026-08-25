@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Icon } from "../../assets/icons/Icon";
 import { Reveal } from "../ui/Reveal";
 import { TestimonialCard } from "./TestimonialCard";
@@ -8,18 +9,18 @@ interface ReviewItem {
   name: string;
   role: string;
   quote: string;
+  photo?: string;
 }
 
 interface Props {
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   items: ReviewItem[];
   autoPlayMs?: number;
 }
 
 export function ReviewsCarousel({ eyebrow, title, items, autoPlayMs = 3200 }: Props) {
-  const { trackRef, index, prev, next, goToDot, toggleUserPaused, userPaused, reducedMotion, interactionHandlers } =
-    useCarousel(items.length, autoPlayMs);
+  const { trackRef, index, prev, next, goToDot, interactionHandlers } = useCarousel(items.length, autoPlayMs);
 
   return (
     <Reveal className={styles.wrap}>
@@ -29,16 +30,6 @@ export function ReviewsCarousel({ eyebrow, title, items, autoPlayMs = 3200 }: Pr
           <h2>{title}</h2>
         </div>
         <div className={styles.nav}>
-          {items.length > 1 && !reducedMotion && (
-            <button
-              type="button"
-              onClick={toggleUserPaused}
-              aria-label={userPaused ? "Play reviews" : "Pause reviews"}
-              aria-pressed={userPaused}
-            >
-              <Icon name={userPaused ? "play" : "pause"} size={18} />
-            </button>
-          )}
           <button type="button" onClick={prev} aria-label="Previous review">
             <Icon name="chevronLeft" size={20} />
           </button>
@@ -51,12 +42,12 @@ export function ReviewsCarousel({ eyebrow, title, items, autoPlayMs = 3200 }: Pr
       <div className={styles.track} ref={trackRef} {...interactionHandlers}>
         {items.map((item) => (
           <div className={styles.slide} key={item.name}>
-            <TestimonialCard name={item.name} role={item.role} quote={item.quote} />
+            <TestimonialCard name={item.name} role={item.role} quote={item.quote} photo={item.photo} badge="Team Voice" />
           </div>
         ))}
       </div>
 
-      <div className={styles.dots} role="tablist" aria-label={`${title} slides`}>
+      <div className={styles.dots} role="tablist" aria-label={`${eyebrow} slides`}>
         {items.map((item, i) => (
           <button
             key={item.name}
