@@ -14,7 +14,7 @@ interface Props {
 
 export function CtaBanner({ title, description, ctaLabel, ctaTo, children }: Props) {
   return (
-    <section className="section">
+    <section className={`section ${styles.section}`}>
       <div className="container-custom">
         <div className={styles.panel}>
           <GradientBlob variant="green" className={`blob-decor ${styles.blobA}`} />

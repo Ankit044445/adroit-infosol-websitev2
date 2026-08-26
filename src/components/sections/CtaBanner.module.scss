@@ -1,5 +1,10 @@
 @use "../../styles/variables" as *;
 
+
+.section {
+  margin-block: clamp(1rem, 2.5vw, calc(#{$space-section-lg} - #{$space-section}));
+}
+
 .panel {
   position: relative;
   overflow: hidden;

@@ -9,6 +9,7 @@ interface SeoProps {
 
 const SITE_NAME = "Adroit Infosol";
 const SITE_URL = "https://www.adroitinfosol.com";
+const DEFAULT_OG_IMAGE = `${SITE_URL}/images/team-group-2026.webp`;
 
 /** Per-route SEO tags, rendered into the real HTML at prerender time via Unhead. */
 export function Seo({ title, description, path = "/" }: SeoProps) {
@@ -23,9 +24,11 @@ export function Seo({ title, description, path = "/" }: SeoProps) {
     ogType: "website",
     ogUrl: url,
     ogSiteName: SITE_NAME,
+    ogImage: DEFAULT_OG_IMAGE,
     twitterCard: "summary_large_image",
     twitterTitle: fullTitle,
     twitterDescription: description,
+    twitterImage: DEFAULT_OG_IMAGE,
   });
 
   useHead({
