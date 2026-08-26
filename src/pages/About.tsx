@@ -100,7 +100,6 @@ export function About() {
       <section className="section section-alt">
         <div className="container-custom">
           <PhotoCarousel
-            eyebrow="Inside Adroit Infosol"
             title="A glimpse into our workspace"
             description="A look at where the team works, collaborates, and builds - our Vadodara office."
             items={[

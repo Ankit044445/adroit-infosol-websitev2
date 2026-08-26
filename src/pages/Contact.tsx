@@ -1,6 +1,7 @@
 import { Seo } from "../components/ui/Seo";
 import { Reveal } from "../components/ui/Reveal";
 import { Icon } from "../assets/icons/Icon";
+import { Button } from "../components/ui/Button";
 import { GradientBlob } from "../components/ui/GradientBlob";
 import { ContactForm } from "../components/sections/ContactForm";
 import { IntroVideo } from "../components/sections/IntroVideo";
@@ -47,10 +48,9 @@ export function Contact() {
 
           <Reveal delay={2} className={styles.videoCol}>
             <IntroVideo />
-            <a href={CALENDLY_URL} target="_blank" rel="noreferrer" className={`btn btn-secondary ${styles.calendlyLink}`}>
-              <span>Book Appointment on Calendly</span>
-              <Icon name="arrowRight" size={16} />
-            </a>
+            <Button href={CALENDLY_URL} variant="primary" className={styles.calendlyLink}>
+              Book Appointment on Calendly
+            </Button>
           </Reveal>
         </div>
       </section>

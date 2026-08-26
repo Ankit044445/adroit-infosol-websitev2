@@ -13,20 +13,18 @@ interface ReviewItem {
 }
 
 interface Props {
-  eyebrow: string;
   title: ReactNode;
   items: ReviewItem[];
   autoPlayMs?: number;
 }
 
-export function ReviewsCarousel({ eyebrow, title, items, autoPlayMs = 3200 }: Props) {
+export function ReviewsCarousel({ title, items, autoPlayMs = 3200 }: Props) {
   const { trackRef, index, prev, next, goToDot, interactionHandlers } = useCarousel(items.length, autoPlayMs);
 
   return (
     <Reveal className={styles.wrap}>
       <div className={styles.head}>
         <div>
-          <span className="eyebrow">{eyebrow}</span>
           <h2>{title}</h2>
         </div>
         <div className={styles.nav}>
@@ -47,7 +45,7 @@ export function ReviewsCarousel({ eyebrow, title, items, autoPlayMs = 3200 }: Pr
         ))}
       </div>
 
-      <div className={styles.dots} role="tablist" aria-label={`${eyebrow} slides`}>
+      <div className={styles.dots} role="tablist" aria-label="Client testimonial slides">
         {items.map((item, i) => (
           <button
             key={item.name}

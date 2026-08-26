@@ -10,11 +10,13 @@ interface Props {
   ctaLabel: string;
   ctaTo: string;
   children?: ReactNode;
+  /** Extra breathing room above/below - reserved for the homepage's closing moment. */
+  spacious?: boolean;
 }
 
-export function CtaBanner({ title, description, ctaLabel, ctaTo, children }: Props) {
+export function CtaBanner({ title, description, ctaLabel, ctaTo, children, spacious = false }: Props) {
   return (
-    <section className={`section ${styles.section}`}>
+    <section className={`section ${spacious ? styles.spacious : ""}`}>
       <div className="container-custom">
         <div className={styles.panel}>
           <GradientBlob variant="green" className={`blob-decor ${styles.blobA}`} />

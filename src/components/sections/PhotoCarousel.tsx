@@ -10,21 +10,19 @@ interface CarouselItem {
 }
 
 interface Props {
-  eyebrow: string;
   title: string;
   description?: string;
   items: CarouselItem[];
   autoPlayMs?: number;
 }
 
-export function PhotoCarousel({ eyebrow, title, description, items, autoPlayMs = 2800 }: Props) {
+export function PhotoCarousel({ title, description, items, autoPlayMs = 2800 }: Props) {
   const { trackRef, index, prev, next, goToDot, interactionHandlers } = useCarousel(items.length, autoPlayMs);
 
   return (
     <Reveal className={styles.wrap}>
       <div className={styles.head}>
         <div className={styles.headCopy}>
-          <span className="eyebrow">{eyebrow}</span>
           <h2 className={styles.heading}>{title}</h2>
           {description && <p className={`lead ${styles.lead}`}>{description}</p>}
         </div>

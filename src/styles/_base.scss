@@ -53,6 +53,12 @@ h6 {
   margin: 0 0 $space-4;
 }
 
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 h1 {
   font-size: $fs-h1;
   letter-spacing: $ls-tighter;
@@ -63,23 +69,13 @@ h2 {
   letter-spacing: $ls-tighter;
 }
 
-[data-theme="dark"] {
-
-  h1,
-  h2 {
-    background: linear-gradient(180deg, #ffffff 20%, rgba(250, 249, 251, 0.72) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-}
-
 .text-gradient {
   background: linear-gradient(135deg, var(--brand-strong) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline;
+  padding-bottom: 0.08em;
 }
 
 h3 {

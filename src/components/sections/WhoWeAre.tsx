@@ -14,9 +14,6 @@ export function WhoWeAre() {
     <section className="section section-alt">
       <div className={`container-custom ${styles.inner}`}>
         <Reveal className={styles.copy}>
-          <span className="eyebrow">
-            <Icon name="users" size={14} /> Who We Are
-          </span>
           <h2>
             Building technology that moves <span className="text-gradient">businesses forward</span>
           </h2>

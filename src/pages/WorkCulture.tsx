@@ -44,7 +44,6 @@ export function WorkCulture() {
       <section className="section">
         <div className="container-custom">
           <PhotoCarousel
-            eyebrow="Behind the Scenes"
             title="A glimpse into our workplace"
             description="Real moments from our Vadodara office — where our engineering team collaborates, innovates, and builds together."
             items={[
@@ -100,7 +99,6 @@ export function WorkCulture() {
       <section className="section">
         <div className="container-custom">
           <ReviewsCarousel
-            eyebrow="Hear It From Our Team"
             title="What it's like to work here"
             items={employeeReviews.map((r) => ({
               name: r.name,

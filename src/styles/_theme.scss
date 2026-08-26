@@ -40,7 +40,7 @@
   --text: #{$stone-50};
   --text-muted: #{$stone-300};
   --text-on-brand: #{$white};
-  --heading: #{$stone-50};
+  --heading: color-mix(in srgb, #{$stone-50} 92%, #{$green-400} 8%);
   --brand: #{$green-500};
   --brand-strong: #{$green-400};
   --brand-soft: rgba(123, 179, 73, 0.14);

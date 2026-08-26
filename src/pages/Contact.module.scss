@@ -216,17 +216,7 @@ a.reachValue:hover {
 .calendlyLink {
   margin-top: $space-4;
   width: 100%;
-  background: var(--brand-soft);
-  border-color: var(--brand);
-  color: var(--brand-strong);
-  box-shadow: var(--shadow-sm);
-
-  &:hover {
-    background: var(--brand-solid);
-    border-color: var(--brand-solid);
-    color: var(--text-on-brand);
-    box-shadow: var(--shadow-md);
-  }
+  justify-content: center;
 }
 
 .formRow {

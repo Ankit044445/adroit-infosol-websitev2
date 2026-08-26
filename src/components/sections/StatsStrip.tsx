@@ -22,12 +22,12 @@ export function StatsStrip() {
   return (
     <div className={styles.strip}>
       {stats.map((s, i) => (
-        <Reveal key={s.label} delay={((i % 6) + 1) as 1} className={styles.card}>
-          <div className={styles.iconWrap}>
-            <Icon name={s.icon as IconName} size={22} />
-          </div>
+        <Reveal key={s.label} delay={((i % 6) + 1) as 1} className={styles.stat}>
           <StatValue raw={s.value} />
-          <span className={styles.label}>{s.label}</span>
+          <span className={styles.label}>
+            <Icon name={s.icon as IconName} size={15} />
+            {s.label}
+          </span>
         </Reveal>
       ))}
     </div>

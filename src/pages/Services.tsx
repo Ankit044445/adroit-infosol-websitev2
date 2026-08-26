@@ -7,7 +7,6 @@ import { ProcessSteps } from "../components/sections/ProcessSteps";
 import { TechMarquee } from "../components/sections/TechMarquee";
 import { CtaBanner } from "../components/sections/CtaBanner";
 import { Faq } from "../components/sections/Faq";
-import { Icon } from "../assets/icons/Icon";
 import { services } from "../data/content";
 
 export function Services() {
@@ -49,9 +48,6 @@ export function Services() {
       <section className="section section-alt">
         <div className="container-custom">
           <div className="section-head section-head--center">
-            <span className="eyebrow">
-              <Icon name="layers" size={14} /> Technology Ecosystem
-            </span>
             <h2>Great Software Starts with the Right Technology</h2>
             <p className="lead">
               We leverage modern programming languages, frameworks, cloud platforms, and development tools to build secure, scalable, and future-ready digital solutions.

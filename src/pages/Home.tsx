@@ -79,7 +79,6 @@ export function Home() {
       <section className="section section-alt">
         <div className="container-custom">
           <ReviewsCarousel
-            eyebrow="A Track Record That Spans Continents"
             title={
               <>
                 13+ Years of Client Feedback, <span className="text-gradient">From Every Time Zone</span>
@@ -95,6 +94,7 @@ export function Home() {
         description="Whether you're developing a new mobile app, modernizing enterprise software, or looking for a reliable technology partner, our team is ready to help you turn your ideas into successful digital solutions."
         ctaLabel="Schedule a Free Consultation"
         ctaTo="/contact-us"
+        spacious
       />
     </>
   );

@@ -14,6 +14,15 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+
+  &:hover {
+    transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-4px);
+    box-shadow: var(--shadow-lg), var(--shadow-brand);
+  }
 }
 
 .cardTop {
@@ -30,17 +39,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--brand-soft);
-  color: var(--brand-strong);
-  border: 1px solid rgba(84, 125, 52, 0.12);
+  background: var(--brand-solid);
+  color: var(--text-on-brand);
   @include icon-pop;
 }
 
 .card:hover .iconWrap {
   transform: scale(1.06) rotate(-3deg);
-  background: var(--brand-solid);
-  color: var(--text-on-brand);
-  border-color: transparent;
+  background: var(--brand-solid-hover);
 }
 
 .index {

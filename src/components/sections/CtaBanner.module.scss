@@ -1,7 +1,7 @@
 @use "../../styles/variables" as *;
 
 
-.section {
+.spacious {
   margin-block: clamp(1rem, 2.5vw, calc(#{$space-section-lg} - #{$space-section}));
 }
 
