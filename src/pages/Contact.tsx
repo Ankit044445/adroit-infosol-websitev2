@@ -25,9 +25,6 @@ export function Contact() {
         <GradientBlob variant="green" className={`blob-decor ${styles.blobB}`} />
         <div className={`container-custom ${styles.grid}`}>
           <div className={styles.copy}>
-            <span className="eyebrow">
-              <Icon name="calendar" size={14} /> 30-Min Strategy Session
-            </span>
             <h1>
               Let's Build Something <span className="text-gradient">Great Together</span>
             </h1>

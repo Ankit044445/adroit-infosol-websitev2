@@ -19,7 +19,6 @@ export function Portfolio() {
       />
 
       <PageHero
-        eyebrow="Our Work"
         title={
           <>
             Projects we've shipped, <span className="text-gradient">platforms we've mastered</span>

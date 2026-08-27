@@ -12,9 +12,6 @@ export function HomeHero() {
 
       <div className={`container-custom ${styles.inner}`}>
         <Reveal className={styles.copy}>
-          <span className="eyebrow">
-            <Icon name="shield" size={14} /> Enterprise IT &amp; Product Engineering
-          </span>
           <h1 className={styles.title}>
             Your Trusted <span className={styles.highlight}>Technology Partner</span> Since 2013
           </h1>

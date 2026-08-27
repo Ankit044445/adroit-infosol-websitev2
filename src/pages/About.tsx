@@ -23,7 +23,6 @@ export function About() {
       />
 
       <PageHero
-        eyebrow="About Adroit Infosol"
         title={
           <>
             Building Technology That Moves <span className="text-gradient">Businesses Forward</span>

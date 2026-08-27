@@ -21,7 +21,6 @@ export function WorkCulture() {
       />
 
       <PageHero
-        eyebrow="Life at Adroit Infosol"
         title={
           <>
             A workplace built on trust, growth, and <span className="text-gradient">celebration</span>

@@ -19,7 +19,6 @@ export function Services() {
       />
 
       <PageHero
-        eyebrow="Our Services"
         title={
           <>
             End-to-end technology services for every <span className="text-gradient">stage of growth</span>
