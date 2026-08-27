@@ -8,21 +8,23 @@ interface Props {
 
 export function ThemeToggle({ className = "" }: Props) {
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   return (
     <button
       type="button"
-      className={`${styles.toggle} ${theme === "dark" ? styles.isDark : styles.isLight} ${className}`}
+      className={`${styles.themeButton} ${className}`}
       onClick={toggleTheme}
-      aria-label={`Current mode is ${theme}. Click to switch to ${theme === "light" ? "dark" : "light"} mode`}
-      title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+      title={`Switch to ${isDark ? "light" : "dark"} mode`}
     >
-      <span className={styles.slider} aria-hidden="true" />
-      <span className={`${styles.iconWrap} ${styles.sunWrap}`} aria-hidden="true">
-        <Icon name="sun" size={16} />
-      </span>
-      <span className={`${styles.iconWrap} ${styles.moonWrap}`} aria-hidden="true">
-        <Icon name="moon" size={16} />
+      <span className={`${styles.iconSlot} ${isDark ? styles.isDark : styles.isLight}`} aria-hidden="true">
+        <span className={styles.sunIcon}>
+          <Icon name="sun" size={17} />
+        </span>
+        <span className={styles.moonIcon}>
+          <Icon name="moon" size={17} />
+        </span>
       </span>
     </button>
   );

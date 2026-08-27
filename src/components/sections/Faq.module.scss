@@ -11,14 +11,19 @@
 
 .item {
   @include card-surface;
-  padding: $space-5 $space-6;
+  border-radius: $radius-lg;
+  padding: clamp(1.1rem, 2.2vw, 1.4rem) clamp(1.2rem, 2.5vw, 1.75rem);
+  transition: border-color $dur-fast $ease-out, box-shadow $dur-fast $ease-out;
 
   &[open] {
     border-color: var(--brand);
+    box-shadow: var(--shadow-md);
   }
 
   &[open] .caret {
     transform: rotate(180deg);
+    background: var(--brand-soft);
+    color: var(--brand-strong);
   }
 }
 
@@ -31,9 +36,10 @@
   list-style: none;
   font-family: $font-heading;
   font-weight: 700;
-  font-size: $fs-body;
+  font-size: 1.05rem;
   color: var(--heading);
   transition: color $dur-fast $ease-out;
+  user-select: none;
 
   &::-webkit-details-marker {
     display: none;
@@ -41,6 +47,11 @@
 
   &:hover {
     color: var(--brand-strong);
+  }
+
+  &:hover .caret {
+    background: var(--bg-alt);
+    border-color: var(--brand-soft);
   }
 
   &:focus-visible {
@@ -51,9 +62,18 @@
 }
 
 .caret {
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-md;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  color: var(--brand-strong);
-  transition: transform $dur-base $ease-out;
+  color: var(--text-muted);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  transition: transform $dur-base cubic-bezier(0.16, 1, 0.3, 1),
+    background-color $dur-fast $ease-out, color $dur-fast $ease-out, border-color $dur-fast $ease-out;
 }
 
 .answer {

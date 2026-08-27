@@ -1,39 +1,88 @@
 @use "../styles/variables" as *;
 @use "../styles/mixins" as *;
 
+.filterTrack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: $space-5;
+}
+
+.filterPill {
+  font-family: $font-heading;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.45rem 1.15rem;
+  border-radius: $radius-pill;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all $dur-fast $ease-out;
+  user-select: none;
+
+  &:hover {
+    background: var(--bg-alt);
+    border-color: var(--brand);
+    color: var(--heading);
+    transform: translateY(-1px);
+  }
+}
+
+.filterPillActive {
+  background: var(--brand-solid) !important;
+  color: var(--text-on-brand) !important;
+  border-color: var(--brand-solid) !important;
+  box-shadow: 0 4px 12px -2px rgba(95, 141, 59, 0.35) !important;
+  transform: translateY(-1px);
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: $space-5;
   margin-top: clamp(2rem, 4vw, 2.75rem);
+}
+
+.cardCol {
+  height: 100%;
+  display: flex;
 }
 
 .card {
   @include card-surface;
   @include card-hover;
   padding: 0;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
-
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
 }
 
-// real project logos, background removed and cropped tight
 .thumb {
   aspect-ratio: 4 / 3;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
+  padding: 1.5rem;
 
   img {
-    width: 58%;
-    height: 58%;
+    max-width: 85%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 8px 20px rgba(20, 18, 26, 0.16));
+    filter: drop-shadow(0 4px 12px rgba(20, 18, 26, 0.1));
     transition: transform $dur-base $ease-out;
   }
 }
@@ -64,6 +113,20 @@
   background: #eef0fb;
 }
 
+[data-theme="dark"] {
+  .green .thumb {
+    background: rgba(123, 179, 73, 0.12);
+  }
+
+  .sky .thumb {
+    background: rgba(87, 190, 233, 0.12);
+  }
+
+  .indigo .thumb {
+    background: rgba(66, 87, 196, 0.14);
+  }
+}
+
 .cardBody {
   padding: $space-5;
   display: flex;
@@ -74,6 +137,8 @@
 
 .name {
   font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--heading);
   margin-bottom: 0;
 }
 

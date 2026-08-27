@@ -73,8 +73,12 @@ export function ServiceDetail() {
             </div>
           </div>
 
-          <Reveal delay={2} className={styles.heroIconFrame}>
-            <Icon name={service.icon as IconName} size={96} />
+          <Reveal delay={2} className={styles.heroEmblem}>
+            <div className={styles.emblemOuter}>
+              <div className={styles.emblemInner}>
+                <Icon name={service.icon as IconName} size={64} />
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

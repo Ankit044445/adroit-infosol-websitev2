@@ -14,8 +14,8 @@
   --brand: #{$green-600};
   --brand-strong: #{$green-700};
   --brand-soft: #{$green-100};
-  --brand-solid: #{$green-700};
-  --brand-solid-hover: #{$green-800};
+  --brand-solid: #{$green-600};
+  --brand-solid-hover: #{$green-700};
   --accent: #{$sky-500};
   --accent-strong: #{$sky-600};
   --accent-soft: #{$sky-100};
@@ -43,9 +43,9 @@
   --heading: color-mix(in srgb, #{$stone-50} 92%, #{$green-400} 8%);
   --brand: #{$green-500};
   --brand-strong: #{$green-400};
-  --brand-soft: rgba(123, 179, 73, 0.14);
-  --brand-solid: #{$green-700};
-  --brand-solid-hover: #{$green-800};
+  --brand-soft: rgba(105, 155, 65, 0.14);
+  --brand-solid: #5f8d3b;
+  --brand-solid-hover: #6ea045;
   --accent: #{$sky-400};
   --accent-strong: #{$sky-400};
   --accent-soft: rgba(87, 190, 233, 0.14);

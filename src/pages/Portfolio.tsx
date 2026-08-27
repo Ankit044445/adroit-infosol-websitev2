@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Seo } from "../components/ui/Seo";
 import { Button } from "../components/ui/Button";
-import { Reveal } from "../components/ui/Reveal";
 import { PageHero } from "../components/sections/PageHero";
 import { PlatformIconCluster } from "../components/sections/PlatformIconCluster";
 import { CtaBanner } from "../components/sections/CtaBanner";
@@ -8,8 +8,21 @@ import { portfolio } from "../data/content";
 import styles from "./Portfolio.module.scss";
 
 const toneCycle: Array<"green" | "sky" | "indigo"> = ["green", "sky", "indigo"];
+const categories = ["All Projects", "Mobile Apps", "Web Portals", "LimeSurvey", "IoT Solutions"] as const;
+type Category = (typeof categories)[number];
 
 export function Portfolio() {
+  const [activeTab, setActiveTab] = useState<Category>("All Projects");
+
+  const filtered = portfolio.filter((p) => {
+    if (activeTab === "All Projects") return true;
+    if (activeTab === "Mobile Apps") return p.platforms.includes("Android") || p.platforms.includes("iOS") || p.platforms.includes("Hybrid");
+    if (activeTab === "Web Portals") return p.platforms.includes("Web");
+    if (activeTab === "LimeSurvey") return p.platforms.includes("LimeSurvey");
+    if (activeTab === "IoT Solutions") return p.platforms.includes("IoT");
+    return true;
+  });
+
   return (
     <>
       <Seo
@@ -41,11 +54,27 @@ export function Portfolio() {
               permission to share publicly.
             </p>
           </div>
+
+          <div className={styles.filterTrack} role="tablist" aria-label="Filter portfolio by platform">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === cat}
+                className={`${styles.filterPill} ${activeTab === cat ? styles.filterPillActive : ""}`}
+                onClick={() => setActiveTab(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
           <div className={styles.grid}>
-            {portfolio.map((p, i) => {
+            {filtered.map((p, i) => {
               const tone = toneCycle[i % 3];
               return (
-                <Reveal key={p.name} delay={((i % 6) + 1) as 1} className={styles.wrap}>
+                <div key={p.name} className={styles.cardCol}>
                   <article className={`${styles.card} ${styles[tone]}`}>
                     <div className={styles.thumb}>
                       <img
@@ -68,7 +97,7 @@ export function Portfolio() {
                       </div>
                     </div>
                   </article>
-                </Reveal>
+                </div>
               );
             })}
           </div>

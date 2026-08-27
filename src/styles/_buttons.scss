@@ -39,11 +39,13 @@
 .btn-primary {
   background: var(--brand-solid);
   color: var(--text-on-brand);
-  box-shadow: var(--shadow-brand);
+  border: 1px solid transparent;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 
   &:hover {
     background: var(--brand-solid-hover);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.25);
     color: var(--text-on-brand);
   }
 }
@@ -51,26 +53,24 @@
 .btn-secondary {
   background: var(--surface-raised);
   color: var(--heading);
-  border-color: var(--border-strong);
-  box-shadow: 0 1px 2px rgba(20, 18, 26, 0.04);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-sm);
 
-  // fills solid on hover instead of just changing border/text color
   &:hover {
-    background: var(--brand-solid);
-    border-color: var(--brand-solid);
-    color: var(--text-on-brand);
-    box-shadow: var(--shadow-brand);
+    background: var(--bg-alt);
+    border-color: var(--heading);
+    color: var(--heading);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 
   &:hover svg {
-    color: var(--text-on-brand);
+    color: var(--brand-strong);
   }
 }
 
-// border-strong is too faint in light mode, bump it up (dark mode is fine)
 :root:not([data-theme="dark"]) .btn-secondary {
-  border-color: $stone-400;
+  border-color: var(--border-strong);
 }
 
 .btn-ghost {
